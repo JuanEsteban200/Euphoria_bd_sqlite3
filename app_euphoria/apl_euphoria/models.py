@@ -1,7 +1,6 @@
 from django.db import models
 
 # Create your models here.
-from django.db import models
 
 class Administrador(models.Model):
     id_administrador = models.AutoField(primary_key=True)
