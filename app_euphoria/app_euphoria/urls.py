@@ -16,7 +16,35 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from apl_euphoria.views import Cliente, Proveedor, pedido, Pago, Factura, DetallePedido
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('Clientes/', Cliente),
+    path('Proveedores/', Proveedor),
+    path('Pedidos/', pedido),
+    path('Pago/', Pago),
+    path('Factura/', Factura),
+    path('Detallepedido/', DetallePedido)
+   
+    
+    
 ]
