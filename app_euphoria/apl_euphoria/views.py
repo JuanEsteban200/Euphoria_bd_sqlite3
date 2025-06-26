@@ -1,19 +1,46 @@
 from django.shortcuts import render
 
-# Create your views here.
-# productos
-def productos(request):
-    return render(request, 'productos.html')
 
-# administrador
-def adminitrador(request):
-    return render(request, 'adminitrador.html')
-#compras
-def compras(request):
-    return render(request, 'compras.html')
-# ventas
-def ventas(request):
-    return render(request, 'ventas.html')
-#vendedor
-def vendedor(request):
-    return render(request, 'vendedor.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Create your views here.
+# clientes
+
+def Cliente(request):
+    return render(request,'clientes.html')
+
+def Proveedor(request):
+    return render(request,'proveedores.html')
+
+def pedido(request):
+    return render(request,'pedidos.html')
+
+def Pago(request):
+    return render(request,'pagos.html')
+
+def Factura(request):
+    return render(request,'factura.html')
+
+def DetallePedido(request):
+    return render(request,'detallepedido.html')
+
