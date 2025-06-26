@@ -49,4 +49,7 @@ def Factura(request):
 #detallepedido
 def DetallePedido(request):
     return render(request,'detallepedido.html')
+#pqr
+def pqr(request):
+    return render(request,'pqr.html')
 
