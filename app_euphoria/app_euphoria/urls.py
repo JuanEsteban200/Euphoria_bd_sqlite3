@@ -30,7 +30,7 @@ urlpatterns = [
 
 
 
-    path('admin/', admin.site.urls),
+    
     path('Clientes/', Cliente),
     path('Proveedores/', Proveedor),
     path('Pedidos/', pedido),
