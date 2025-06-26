@@ -16,15 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apl_euphoria.views import productos, adminitrador, compras, Cliente, Proveedor, pedido, Pago, Factura, DetallePedido
+from apl_euphoria.views import productos, adminitrador, compras, Cliente, Proveedor, pedido, Pago, Factura, DetallePedido,ventas,vendedor
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('administrador/', adminitrador),#modulo administrador
     path('productos/', productos),#modulo productos
     path('compras/', compras),#modulo compras
-    path('ventas/', compras),#modulo ventas
-    path('vendedor/', compras),#modulo vendedor
+    path('ventas/', ventas),#modulo ventas
+    path('vendedor/', vendedor),#modulo vendedor
 
 
 
