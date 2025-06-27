@@ -29,8 +29,8 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=100)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.IntegerField()
-    categoria = models.CharField(max_length=100)
-    marca = models.CharField(max_length=100)
+    id_categoria = models.ForeignKey('CategoriaProducto', on_delete=models.CASCADE)
+    id_marca = models.ForeignKey('MarcaCosmetica', on_delete=models.CASCADE)
     Indexes = models.Index(fields=['id_producto'])
 
 class Pedido(models.Model):
@@ -100,3 +100,22 @@ class CategoriaProducto(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
     Indexes = models.Index(fields=['id_categoria'])
+    
+class MarcaCosmetico(models.Model):
+    id_marca = models.AutoField(primary_key=True)
+    detalles = models.TextField()
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    cantidades = models.IntegerField()
+    Indexes = models.Index(fields=['id_marca'])
+    
+
+class Pqr(models.Model):
+    id_pqr = models.AutoField(primary_key=True)
+    id_cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE)
+    direccion_cliente = models.CharField(max_length=255)
+    telefono_cliente = models.CharField(max_length=20)
+    descripcion = models.TextField()
+    id_administrador = models.ForeignKey('Administrador', on_delete=models.CASCADE)
+    Indexes = models.Index(fields=['id_pqr'])
+    
+    
