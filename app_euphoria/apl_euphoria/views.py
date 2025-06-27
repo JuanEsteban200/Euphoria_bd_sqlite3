@@ -1,12 +1,5 @@
 from django.shortcuts import render
-
-
-
-
-
-
-
-
+from django.http import HttpResponse
 
 # Create your views here.
 # productos
@@ -52,4 +45,17 @@ def DetallePedido(request):
 #pqr
 def pqr(request):
     return render(request,'pqr.html')
+def vista1(request):
+    return HttpResponse("esta es mi primera vista")
+
+def vista2(request):
+    persona = {
+        'nombre': 'Edward',
+        'edad': 30,
+        'correo': 'edward@example.com'
+    }
+    return HttpResponse(persona)
+
+def vista3(request):
+    return render(request, 'index.html')
 
