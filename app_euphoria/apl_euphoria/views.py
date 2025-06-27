@@ -7,8 +7,8 @@ def productos(request):
     return render(request, 'productos.html')
 
 # administrador
-def adminitrador(request):
-    return render(request, 'adminitrador.html')
+def administrador(request):
+    return render(request, 'administrador.html')
 #compras
 def compras(request):
     return render(request, 'compras.html')
@@ -58,4 +58,3 @@ def vista2(request):
 
 def vista3(request):
     return render(request, 'index.html')
-
