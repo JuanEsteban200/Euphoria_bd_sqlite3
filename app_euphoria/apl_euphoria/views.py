@@ -58,3 +58,6 @@ def vista2(request):
 
 def vista3(request):
     return render(request, 'index.html')
+#Categoria
+def Categoria(request):
+    return render(request,'Categoria.html')
