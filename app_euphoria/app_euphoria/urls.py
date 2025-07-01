@@ -25,13 +25,17 @@ urlpatterns = [
     path('compras/', compras),#modulo compras
     path('ventas/', ventas),#modulo ventas
     path('vendedor/', vendedor),#modulo vendedor
-    path('clientes/', Clientes),
+
+
+
+
+
+    
+    path('Clientes/', Cliente),
     path('Proveedores/', Proveedor),
     path('Pedidos/', pedido),
     path('Pago/', Pago),
     path('Factura/', Factura),
     path('Detallepedido/', DetallePedido),
     path('pqr/', pqr),
-    path('Categoria/', Categoria),
-
 ]

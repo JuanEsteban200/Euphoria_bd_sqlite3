@@ -4,20 +4,20 @@ from apl_euphoria.models import *
 
 # Create your views here.
 # productos
-def productos(request):
+def Productos(request):
     return render(request, 'productos.html')
 
 # administrador
-def administrador(request): 
+def Administrador(request):
     return render(request, 'administrador.html')
 #compras
-def compras(request):
+def Compras(request):
     return render(request, 'compras.html')
 # ventas
-def ventas(request):
+def Ventas(request):
     return render(request, 'ventas.html')
 #vendedor
-def vendedor(request):
+def Vendedor(request):
     return render(request, 'vendedor.html')
 
 # clientes
@@ -32,7 +32,7 @@ def Proveedor(request):
     return render(request,'proveedores.html')
 
 #pedido
-def pedido(request):
+def Pedido(request):
     return render(request,'pedidos.html')
 
 #pago
@@ -47,10 +47,13 @@ def Factura(request):
 def DetallePedido(request):
     return render(request,'detallepedido.html')
 #pqr
-def pqr(request):
+def Pqr(request):
     return render(request,'pqr.html')
 def vista1(request):
     return HttpResponse("esta es mi primera vista")
+#marca cosmeticos
+def Marcacosmeticos(request):
+    return render(request,'marcacosmeticos.html')
 
 def vista2(request):
     persona = {
