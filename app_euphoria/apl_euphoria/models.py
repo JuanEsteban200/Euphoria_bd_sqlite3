@@ -30,7 +30,7 @@ class Producto(models.Model):
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.IntegerField()
     id_categoria = models.ForeignKey('CategoriaProducto', on_delete=models.CASCADE)
-    id_marca = models.ForeignKey('MarcaCosmetica', on_delete=models.CASCADE)
+    id_marca = models.ForeignKey('MarcaCosmetico', on_delete=models.CASCADE)
     Indexes = models.Index(fields=['id_producto'])
 
 class Pedido(models.Model):
