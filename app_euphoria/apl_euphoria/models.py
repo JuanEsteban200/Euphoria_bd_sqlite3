@@ -7,7 +7,7 @@ class Administrador(models.Model):
     nombre = models.CharField(max_length=100)
     correo = models.CharField(max_length=100)
     telefono = models.CharField(max_length=20)
-    Indexes = models.Index(fields=['id_administrador'])
+    #Indexes = models.Index(fields=['id_administrador'])
 
 class Cliente(models.Model):
     id_cliente = models.AutoField(primary_key=True)
@@ -15,6 +15,8 @@ class Cliente(models.Model):
     correo = models.CharField(max_length=100)
     numero_telefono = models.CharField(max_length=20)
     Indexes = models.Index(fields=['id_cliente'])
+    def __str__(self):
+        return self.nombre
 
 class Vendedor(models.Model):
     id_vendedor = models.AutoField(primary_key=True)
@@ -30,10 +32,10 @@ class Producto(models.Model):
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.IntegerField()
     id_categoria = models.ForeignKey('CategoriaProducto', on_delete=models.CASCADE)
-    id_marca = models.ForeignKey('MarcaCosmetica', on_delete=models.CASCADE)
+    id_marca = models.ForeignKey('MarcaCosmetico', on_delete=models.CASCADE)
     Indexes = models.Index(fields=['id_producto'])
 
-class Pedido(models.Model):
+class Pedido(models.Model): 
     id_pedido = models.AutoField(primary_key=True)
     id_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     fecha = models.DateTimeField()

@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apl_euphoria.views import productos, administrador, compras, Cliente, Proveedor, pedido, Pago, Factura, DetallePedido,ventas,vendedor, pqr, Categoria
+from apl_euphoria.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +25,7 @@ urlpatterns = [
     path('compras/', compras),#modulo compras
     path('ventas/', ventas),#modulo ventas
     path('vendedor/', vendedor),#modulo vendedor
-    path('Clientes/', Cliente),
+    path('clientes/', Clientes),
     path('Proveedores/', Proveedor),
     path('Pedidos/', pedido),
     path('Pago/', Pago),

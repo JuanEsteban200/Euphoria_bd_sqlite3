@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from apl_euphoria.models import *
 
 # Create your views here.
 # productos
@@ -7,7 +8,7 @@ def productos(request):
     return render(request, 'productos.html')
 
 # administrador
-def administrador(request):
+def administrador(request): 
     return render(request, 'administrador.html')
 #compras
 def compras(request):
@@ -20,8 +21,11 @@ def vendedor(request):
     return render(request, 'vendedor.html')
 
 # clientes
-def Cliente(request):
-    return render(request,'clientes.html')
+def Clientes(request):
+    clientes =  {
+        'client': Cliente.objects.all()
+        } 
+    return render(request,'clientes.html', {'cliente': clientes})
 
 #proveedor
 def Proveedor(request):
