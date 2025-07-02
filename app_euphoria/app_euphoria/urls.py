@@ -20,22 +20,19 @@ from apl_euphoria.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('administrador/', administrador),#modulo administrador
-    path('productos/', productos),#modulo productos
-    path('compras/', compras),#modulo compras
-    path('ventas/', ventas),#modulo ventas
-    path('vendedor/', vendedor),#modulo vendedor
+    path('administrador/', Administrador),#modulo administrador
+    path('productos/', Productos),#modulo productos
+    path('compras/', Compras),#modulo compras
+    path('ventas/', Ventas),#modulo ventas
+    path('vendedor/', Vendedor),#modulo vendedor
+    path('clientes/', Clientes),
+    path('proveedores/', Proveedor),
+    path('pedidos/', Pedido),
+    path('pago/', Pago),
+    path('factura/', Factura),
+    path('detallepedido/', DetallePedido),
+    path('pqr/', Pqr),
+    path('categoria/', Categoria),
+    path('marcacosmeticos/', Marcacosmeticos) # modulo de marcacometicos
 
-
-
-
-
-    
-    path('Clientes/', Cliente),
-    path('Proveedores/', Proveedor),
-    path('Pedidos/', pedido),
-    path('Pago/', Pago),
-    path('Factura/', Factura),
-    path('Detallepedido/', DetallePedido),
-    path('pqr/', pqr),
 ]
