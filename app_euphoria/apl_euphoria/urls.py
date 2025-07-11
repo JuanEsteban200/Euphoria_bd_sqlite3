@@ -13,6 +13,7 @@ from apl_euphoria.Views.marca_producto.views import Marca_productosListView, Mar
 from apl_euphoria.Views.pqr.views import PqrListView, PqrCreateView, PqrUpdateView, PqrDeleteView
 from apl_euphoria.Views.administrador.views import AdministradorListView, AdministradorCreateView, AdministradorUpdateView, AdministradorDeleteView
 from apl_euphoria.Views.vendedor.views import VendedorListView, VendedorCreateView, VendedorUpdateView, VendedorDeleteView
+from apl_euphoria.Views.ventas.views import VentaListView, VentaCreateView, VentaUpdateView, VentaDeleteView
 
 
 app_name = 'apl_euphoria'
@@ -29,6 +30,12 @@ urlpatterns = [
     path('vendedores/crear/', VendedorCreateView.as_view(), name='vendedor_crear'),
     path('vendedores/<int:pk>/editar/', VendedorUpdateView.as_view(), name='vendedor_editar'),
     path('vendedores/<int:pk>/eliminar/', VendedorDeleteView.as_view(), name='vendedor_eliminar'),
+    
+    # Venta URLs
+    path('ventas/', VentaListView.as_view(), name='venta_lista'),
+    path('ventas/crear/', VentaCreateView.as_view(), name='venta_crear'),
+    path('ventas/<int:pk>/editar/', VentaUpdateView.as_view(), name='venta_editar'),
+    path('ventas/<int:pk>/eliminar/', VentaDeleteView.as_view(), name='venta_eliminar'),
     
     # Cliente URLs
     path('clientes/', ClienteListView.as_view(), name='cliente_lista'),  
