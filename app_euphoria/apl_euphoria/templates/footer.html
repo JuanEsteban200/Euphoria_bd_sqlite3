@@ -1,0 +1,32 @@
+ <!-- Footer -->
+    <footer class="app-footer">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="copyright">
+                    &copy; <span id="current-year"></span> Euphoria Manager. Todos los derechos reservados.
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="text-muted mx-2">Términos</a>
+                    <a href="#" class="text-muted mx-2">Privacidad</a>
+                    <a href="#" class="text-muted mx-2">Soporte</a>
+                    <a href="#" class="text-muted mx-2">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </footer>{% load static %}
+
+<!-- Contenedor con fondo blanco y color personalizado -->
+<div class="footer-outer-box">
+  <div class="footer-container">
+    <div class="footer-text">
+      <strong>© 2025 EUPHORIA. Todos los derechos reservados.</strong>
+      <span class="footer-links">
+        <a href="#">Términos y Condiciones</a>
+        <br>
+        <a href="#">Política de Privacidad</a>
+      </span>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">

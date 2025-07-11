@@ -1,0 +1,156 @@
+{% extends "body.html" %}
+
+{% block content %}
+
+<div class="form-container">
+  <h2><i class="fas fa-plus"></i> Crear nuevo cliente</h2>
+
+  <form method="post" id="clienteForm">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    
+    <label for="nombre"><strong>Nombre:</strong></label>
+    {{ form.nombre }}
+    {{ form.nombre.errors }}
+
+    <label for="correo"><strong>Correo:</strong></label>
+    {{ form.correo }}
+    {{ form.correo.errors }}
+
+    <label for="numero_telefono"><strong>Numero teléfono:</strong></label>
+    {{ form.numero_telefono }}
+    {{ form.numero_telefono.errors }}
+
+    <button type="submit" class="btn-agregar"><i class="fas fa-save"></i> Guardar </button>
+    <a href="{% url 'apl_euphoria:listar_cliente' %}" class="btn btn-secondary"><i class='fas fa-times'></i> Cancelar</a>
+  </form>
+</div>
+
+
+
+<style>
+.form-container {
+  max-width: 500px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.form-container label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Estilos para los botones - ahora con misma estructura */
+.btn-agregar, .btn-secondary {
+  margin-top: 20px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  min-width: 110px; /* Añadido para mismo ancho mínimo */
+  text-align: center; /* Añadido para centrar texto */
+  vertical-align: middle; /* Añadido para alineación vertical */
+  font-size: 14px; /* Añadido para mismo tamaño de fuente */
+  line-height: 1.5; /* Añadido para misma altura de línea */
+}
+
+/* Botón Agregar (manteniendo tus estilos) */
+.btn-agregar {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-agregar:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo mejorado para botón Cancelar */
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  margin-left: 10px;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268; /* Efecto hover consistente */
+}
+
+/* Nuevo contenedor para agrupar botones */
+.botones-accion {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap; /* Para responsive */
+}
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Contenedor para alinear botones */
+.botones-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px; /* Espacio uniforme entre botones */
+  margin-top: 20px;
+}
+
+/* Modal de éxito (tus estilos existentes) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  margin: 15% auto;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal-content button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+</style>
+{%endblock%}
+
+<link rel="stylesheet" href="{% static 'css/tabla.css' %}">
+
+{% endblock %}
