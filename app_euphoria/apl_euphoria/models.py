@@ -7,6 +7,9 @@ class Administrador(models.Model):
     nombre = models.CharField(max_length=100)
     correo = models.CharField(max_length=100)
     telefono = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return self.nombre
 
 class Cliente(models.Model):
     id_cliente = models.AutoField(primary_key=True)
@@ -23,6 +26,19 @@ class Vendedor(models.Model):
     telefono = models.CharField(max_length=20)
     correo = models.CharField(max_length=20)
     direccion = models.CharField(max_length=255)
+    Indexes = models.Index(fields=['id_vendedor'])
+    
+class Venta(models.Model):
+    id_venta = models.AutoField(primary_key=True)
+    id_vendedor = models.ForeignKey('Vendedor', on_delete=models.CASCADE)
+    detalles = models.TextField()
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2)
+    fecha = models.DateField()
+    cantidad = models.IntegerField()
+    id_administrador = models.ForeignKey('Administrador', on_delete=models.CASCADE)
+    id_pedido = models.ForeignKey('Pedido', on_delete=models.CASCADE)
+    id_producto = models.ForeignKey('Producto', on_delete=models.CASCADE)
 
 class Producto(models.Model):
     id_producto = models.AutoField(primary_key=True)

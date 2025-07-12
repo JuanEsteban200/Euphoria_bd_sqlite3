@@ -12,7 +12,7 @@ from apl_euphoria.Views.cliente.views import ClienteListView, ClienteCreateView,
 # from apl_euphoria.Views.categoria_producto.views import Categotia_productoListView, Categoria_productoCreateView, Categoria_productoUpdateView, Categoria_productoDeleteView
 # from apl_euphoria.Views.marca_producto.views import Marca_productosListView, Marca_productosCreateView, Marca_productosUpdateView, Marca_productosDeleteView
 # from apl_euphoria.Views.pqr.views import PqrListView, PqrCreateView, PqrUpdateView, PqrDeleteView
-# from apl_euphoria.Views.administrador.views import AdministradorListView, AdministradorCreateView, AdministradorUpdateView, AdministradorDeleteView
+from apl_euphoria.Views.administrador.views import AdministradorListView
 # from apl_euphoria.Views.vendedor.views import VendedorListView, VendedorCreateView, VendedorUpdateView, VendedorDeleteView
 
 
@@ -20,7 +20,7 @@ app_name = 'apl_euphoria'
 
 urlpatterns = [
     # # Administrador URLs
-    # path('administradores/', AdministradorListView.as_view(), name='administrador_lista'),
+    path('administradores/', AdministradorListView.as_view(), name='lista_administrador'),
     # path('administradores/crear/', AdministradorCreateView.as_view(), name='administrador_crear'),
     # path('administradores/<int:pk>/editar/', AdministradorUpdateView.as_view(), name='administrador_editar'),
     # path('administradores/<int:pk>/eliminar/', AdministradorDeleteView.as_view(), name='administrador_eliminar'),
@@ -30,6 +30,12 @@ urlpatterns = [
     # path('vendedores/crear/', VendedorCreateView.as_view(), name='vendedor_crear'),
     # path('vendedores/<int:pk>/editar/', VendedorUpdateView.as_view(), name='vendedor_editar'),
     # path('vendedores/<int:pk>/eliminar/', VendedorDeleteView.as_view(), name='vendedor_eliminar'),
+    
+    # Venta URLs
+    # path('ventas/', VentaListView.as_view(), name='venta_lista'),
+    # path('ventas/crear/', VentaCreateView.as_view(), name='venta_crear'),
+    # path('ventas/<int:pk>/editar/', VentaUpdateView.as_view(), name='venta_editar'),
+    # path('ventas/<int:pk>/eliminar/', VentaDeleteView.as_view(), name='venta_eliminar'),
     
     # Cliente URLs
     path('clientes/', ClienteListView.as_view(), name='cliente_lista'),  

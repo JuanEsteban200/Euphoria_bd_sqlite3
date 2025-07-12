@@ -1,7 +1,6 @@
 {% extends 'body.html' %}
-{% load static %}
 {% block content %}
-
+{% load static %}
 
 <style>
 .btn-success.btn-sm {     
@@ -41,7 +40,7 @@
             <div class="card-header">
               <h3 class="card-title">Tabla de Clientes</h3>
               <div class="card-tools">
-                <a href="{% url 'apl_euphoria:crear_cliente' %}" class="btn btn-success btn-sm">
+                <a href="{% url 'apl_euphoria:cliente_crear' %}" class="btn btn-success btn-sm">
                   <i class="fas fa-plus"></i> Agregar cliente
                 </a>
               </div>
@@ -66,12 +65,12 @@
                     <td>{{ cliente.correo }}</td>
                     <td>{{ cliente.numero_telefono }}</td>
                     <td>
-                      <a href="{% url 'apl_euphoria:editar_cliente' cliente.id_cliente %}" class="btn btn-info btn-xs btn-editar" data-url="{% url 'apl_euphoria:editar_cliente' cliente.id_cliente %}">
+                      <a href="{% url 'apl_euphoria:cliente_actualizar' cliente.id_cliente %}"
                         <i class='fas fa-edit'></i>
                       </a>
-                      <a href="{% url 'apl_euphoria:eliminar_cliente' cliente.id_cliente %}" class="btn btn-danger btn-xs btn-eliminar" data-url="{% url 'apl_euphoria:eliminar_cliente' cliente.id_cliente %}">
+                      <a href="{% url 'apl_euphoria:cliente_eliminar' cliente.id_cliente %}" class="btn btn-danger btn-xs btn-eliminar" data-url="{% url 'apl_euphoria:cliente_eliminar' cliente.id_cliente %}">
                         <i class='far fa-trash-alt'></i>
-                      </a>
+                      </a> 
                     </td>
                   </tr>
                   {% endfor %}

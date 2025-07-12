@@ -208,41 +208,39 @@
         .progress {
             height: 10px;
         }
-        /* 🌸 Contenedor externo con fondo para destacar el área del footer */
-.footer-outer-box {
-  background:rgb(67, 28, 77);  /* color suave de fondo externo */
-  padding: 40px 0;
-  display: flex;
-  justify-content: center;
-}
-
-/* 🎨 Estilo del recuadro principal del footer */
-.footer-container {
-  background: linear-gradient(135deg,rgb(165, 39, 136) 0%, #f6e7d7 50%, #f9d29d 100%);
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  padding: 20px 30px;
-  text-align: center;
-  max-width: 700px;
+/* 🌸 Footer de ancho completo con fondo degradado */
+footer {
+  background: linear-gradient(135deg, rgb(71, 19, 102) 50%, #212121 100%);
+  color: #fcf8fb;
+  padding: 20px 40px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
   width: 100%;
 }
 
-/* ✏ Texto del footer */
-.footer-text {
-  font-family: 'Segoe UI', sans-serif;
-  color: #4b0b3d;
-  font-size: 1em;
-  font-weight: 500;
+/* Flex para separar texto e íconos */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-/* 🔗 Enlaces */
-.footer-links a {
-  color: #3e0432;
+/* Izquierda */
+.footer-left {
+  text-align: left;
+}
+
+/* Derecha (links) */
+.footer-right a {
+  color: #fcf8fb;
   text-decoration: underline;
-  margin: 0 5px;
+  margin: 0 8px;
   transition: color 0.2s ease-in-out;
 }
 
-.footer-links a:hover {
+.footer-right a:hover {
   color: #38afbf;
 }
+

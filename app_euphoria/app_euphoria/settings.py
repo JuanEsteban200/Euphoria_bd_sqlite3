@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apl_euphoria',  # Your app name
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

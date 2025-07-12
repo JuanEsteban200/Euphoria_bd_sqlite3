@@ -1,58 +1,74 @@
 <!-- Sidebar/Navigation -->
 {% load static %}
-
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar/Navigation -->
-            <nav class="col-md-3 col-lg-2 d-md-block app-sidebar">
-                <ul class="sidebar-menu">
-                    <li>
-                        <a href="#" class="active">
-                            <i class="fas fa-home"></i>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-users"></i>
-                            Clientes
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-box"></i>
-                            Productos
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-shopping-cart"></i>
-                            Ventas
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-file-invoice"></i>
-                            Facturación
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-chart-bar"></i>
-                            Reportes
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-cog"></i>
-                            Configuración
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-question-circle"></i>
-                            Soporte
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+<div class="row">
+    <ul class="sidebar-menu nav flex-column">
+        <li class="nav-item">
+            <a href="#" class="nav-link active">
+                <i class="fas fa-home me-2"></i>
+                Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'apl_euphoria:cliente_lista' %}" class="nav-link">
+                <i class="fas fa-users me-2"></i>
+                Clientes
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'apl_euphoria:lista_administrador' %}" class="nav-link">
+                <i class="fas fa-box me-2"></i>
+                Administradores
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fas fa-shopping-cart me-2"></i>
+                Ventas
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fas fa-file-invoice me-2"></i>
+                Facturación
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fas fa-chart-bar me-2"></i>
+                Reportes
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fas fa-cog me-2"></i>
+                Configuración
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fas fa-question-circle me-2"></i>
+                Soporte
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fas fa-question-circle me-2"></i>
+                Soporte
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fas fa-question-circle me-2"></i>
+                Soporte
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fas fa-question-circle me-2"></i>
+                Soporte
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>

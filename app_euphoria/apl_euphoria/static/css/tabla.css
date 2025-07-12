@@ -72,7 +72,7 @@
 
 /* Corrige e indenta el estilo del botón de paginación activo */
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-  border: 1.5px solid #b12abd;
+  border: 1.5px solid   #b12abd;
   background: #2a82bd !important;
   color: #fff !important;
   border-radius: 6px;
@@ -81,6 +81,7 @@
   font-weight: 600;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
   cursor: pointer;
+  
 }
 
 /* Botón de paginación activo y hover en rosa */
