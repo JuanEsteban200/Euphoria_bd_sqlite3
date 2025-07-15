@@ -6,12 +6,12 @@ from apl_euphoria.Views.productos.views import ProductoListView, ProductoCreateV
 # from apl_euphoria.Views.detalles_pedidos.views import Detalles_pedidoListView, DetallespedidoCreateView, DetallespedidoUpdateView, DetallespedidoDeleteView
 # from apl_euphoria.Views.pagos.views import PagoListView, PagoCreateView, PagoUpdateView, PagoDeleteView
 # from apl_euphoria.Views.proveedores.views import ProveedorListView, ProveedorCreateView, ProveedorUpdateView, ProveedorDeleteView
-# from apl_euphoria.Views.compras.views import CompraListView, CompraCreateView, CompraUpdateView, CompraDeleteView
+from apl_euphoria.Views.compras.views import CompraListView, CompraCreateView, CompraUpdateView, CompraDeleteView
 # from apl_euphoria.Views.facturas.views import FacturaListView, FacturaCreateView, FacturaUpdateView, FacturaDeleteView
 # from apl_euphoria.Views.promociones.views import PromocionListView, PromocionCreateView, PromocionUpdateView, PromocionDeleteView
 from apl_euphoria.Views.categoria_producto.views import CategoriaProductoListView, CategoriaProductoCreateView, CategoriaProductoUpdateView, CategoriaProductoDeleteView
 from apl_euphoria.Views.marca_producto.views import MarcaCosmeticoListView, MarcaCosmeticoCreateView, MarcaCosmeticoUpdateView, MarcaCosmeticoDeleteView
-# from apl_euphoria.Views.pqr.views import PqrListView, PqrCreateView, PqrUpdateView, PqrDeleteView
+from apl_euphoria.Views.pqr.views import PqrListView, PqrCreateView, PqrUpdateView, PqrDeleteView
 from apl_euphoria.Views.administrador.views import AdministradorListView, AdministradorCreateView, AdministradorUpdateView, AdministradorDeleteView
 # from apl_euphoria.Views.vendedor.views import VendedorListView, VendedorCreateView, VendedorUpdateView, VendedorDeleteView
 
@@ -74,10 +74,10 @@ urlpatterns = [
     # path('proveedores/<int:pk>/eliminar/', ProveedorDeleteView.as_view(), name='proveedor_eliminar'),  
 
     # # Compra URLs
-    # path('compras/', CompraListView.as_view(), name='compra_lista'), 
-    # path('compras/crear/', CompraCreateView.as_view(), name='compra_crear'),  
-    # path('compras/<int:pk>/editar/', CompraUpdateView.as_view(), name='compra_editar'), 
-    # path('compras/<int:pk>/eliminar/', CompraDeleteView.as_view(), name='compra_eliminar'),  
+    path('compras/', CompraListView.as_view(), name='compra_lista'),
+    path('compras/crear/', CompraCreateView.as_view(), name='compra_crear'),
+    path('compras/editar/<int:pk>/', CompraUpdateView.as_view(), name='compra_editar'),
+    path('compras/eliminar/<int:pk>/', CompraDeleteView.as_view(), name='compra_eliminar'), 
 
     # # Factura URLs
     # path('facturas/', FacturaListView.as_view(), name='factura_lista'),  
@@ -103,13 +103,12 @@ urlpatterns = [
     path('marcas/<int:pk>/editar/', MarcaCosmeticoUpdateView.as_view(), name='marca_editar'),  
     path('marcas/<int:pk>/eliminar/', MarcaCosmeticoDeleteView.as_view(), name='marca_eliminar'),  
 
-    # # PQR URLs
-    # path('pqrs/', PqrListView.as_view(), name='pqr_lista'),  
-    # path('pqrs/crear/', PqrCreateView.as_view(), name='pqr_crear'),  
-    # path('pqrs/<int:pk>/editar/', PqrUpdateView.as_view(), name='pqr_editar'),  
-    # path('pqrs/<int:pk>/eliminar/', PqrDeleteView.as_view(), name='pqr_eliminar'), 
-
-
+    # PQR URLs
+    path('pqrs/', PqrListView.as_view(), name='pqr_lista'),
+    path('pqrs/crear/', PqrCreateView.as_view(), name='pqr_crear'),
+    path('pqrs/<int:pk>/editar/', PqrUpdateView.as_view(), name='pqr_editar'),
+    path('pqrs/<int:pk>/eliminar/', PqrDeleteView.as_view(), name='pqr_eliminar'),
+  
 
 
 
