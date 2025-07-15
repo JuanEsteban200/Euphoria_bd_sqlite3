@@ -1,7 +1,7 @@
 from django.urls import path
 from apl_euphoria.views import index, gestion
 from apl_euphoria.Views.cliente.views import ClienteListView, ClienteCreateView, ClienteUpdateView, ClienteDeleteView
-# from apl_euphoria.Views.productos.views import ProductoListView, ProductoCreateView, ProductoUpdateView, ProductoDeleteView
+from apl_euphoria.Views.productos.views import ProductoListView, ProductoCreateView, ProductoUpdateView, ProductoDeleteView
 # from apl_euphoria.Views.pedidos.views import PedidoListView, PedidoCreateView, PedidoUpdateView, PedidoDeleteView
 # from apl_euphoria.Views.detalles_pedidos.views import Detalles_pedidoListView, DetallespedidoCreateView, DetallespedidoUpdateView, DetallespedidoDeleteView
 # from apl_euphoria.Views.pagos.views import PagoListView, PagoCreateView, PagoUpdateView, PagoDeleteView
@@ -9,8 +9,8 @@ from apl_euphoria.Views.cliente.views import ClienteListView, ClienteCreateView,
 # from apl_euphoria.Views.compras.views import CompraListView, CompraCreateView, CompraUpdateView, CompraDeleteView
 # from apl_euphoria.Views.facturas.views import FacturaListView, FacturaCreateView, FacturaUpdateView, FacturaDeleteView
 # from apl_euphoria.Views.promociones.views import PromocionListView, PromocionCreateView, PromocionUpdateView, PromocionDeleteView
-# from apl_euphoria.Views.categoria_producto.views import Categotia_productoListView, Categoria_productoCreateView, Categoria_productoUpdateView, Categoria_productoDeleteView
-# from apl_euphoria.Views.marca_producto.views import Marca_productosListView, Marca_productosCreateView, Marca_productosUpdateView, Marca_productosDeleteView
+from apl_euphoria.Views.categoria_producto.views import CategoriaProductoListView, CategoriaProductoCreateView, CategoriaProductoUpdateView, CategoriaProductoDeleteView
+from apl_euphoria.Views.marca_producto.views import MarcaCosmeticoListView, MarcaCosmeticoCreateView, MarcaCosmeticoUpdateView, MarcaCosmeticoDeleteView
 # from apl_euphoria.Views.pqr.views import PqrListView, PqrCreateView, PqrUpdateView, PqrDeleteView
 from apl_euphoria.Views.administrador.views import AdministradorListView
 # from apl_euphoria.Views.vendedor.views import VendedorListView, VendedorCreateView, VendedorUpdateView, VendedorDeleteView
@@ -19,11 +19,11 @@ from apl_euphoria.Views.administrador.views import AdministradorListView
 app_name = 'apl_euphoria'
 
 urlpatterns = [
-    # # Administrador URLs
+    #  Administrador URLs
     path('administradores/', AdministradorListView.as_view(), name='lista_administrador'),
-    # path('administradores/crear/', AdministradorCreateView.as_view(), name='administrador_crear'),
-    # path('administradores/<int:pk>/editar/', AdministradorUpdateView.as_view(), name='administrador_editar'),
-    # path('administradores/<int:pk>/eliminar/', AdministradorDeleteView.as_view(), name='administrador_eliminar'),
+    #path('administradores/crear/', AdministradorCreateView.as_view(), name='administrador_crear'),
+    #path('administradores/<int:pk>/editar/', AdministradorUpdateView.as_view(), name='administrador_editar'),
+    #path('administradores/<int:pk>/eliminar/', AdministradorDeleteView.as_view(), name='administrador_eliminar'),
     
     # # Vendedor URLs
     # path('vendedores/', VendedorListView.as_view(), name='vendedor_lista'),
@@ -43,11 +43,11 @@ urlpatterns = [
     path('clientes/<int:pk>/editar/', ClienteUpdateView.as_view(), name='cliente_actualizar'),  
     path('clientes/<int:pk>/eliminar/', ClienteDeleteView.as_view(), name='cliente_eliminar'),  
 
-    # # Producto URLs
-    # path('productos/', ProductoListView.as_view(), name='producto_lista'), 
-    # path('productos/crear/', ProductoCreateView.as_view(), name='producto_crear'), 
-    # path('productos/<int:pk>/editar/', ProductoUpdateView.as_view(), name='producto_editar'),  
-    # path('productos/<int:pk>/eliminar/', ProductoDeleteView.as_view(), name='producto_eliminar'),  
+    # Producto URLs
+    path('productos/', ProductoListView.as_view(), name='producto_lista'), 
+    path('productos/crear/', ProductoCreateView.as_view(), name='producto_crear'), 
+    path('productos/<int:pk>/editar/', ProductoUpdateView.as_view(), name='producto_editar'),  
+    path('productos/<int:pk>/eliminar/', ProductoDeleteView.as_view(), name='producto_eliminar'),  
 
     # # Pedido URLs
     # path('pedidos/', PedidoListView.as_view(), name='pedido_lista'),  
@@ -91,17 +91,17 @@ urlpatterns = [
     # path('promociones/<int:pk>/editar/', PromocionUpdateView.as_view(), name='promocion_editar'), 
     # path('promociones/<int:pk>/eliminar/', PromocionDeleteView.as_view(), name='promocion_eliminar'),  
 
-    # # Categoria Producto URLs
-    # path('categorias/', Categotia_productoListView.as_view(), name='categoria_lista'),  
-    # path('categorias/crear/', Categoria_productoCreateView.as_view(), name='categoria_crear'),  
-    # path('categorias/<int:pk>/editar/', Categoria_productoUpdateView.as_view(), name='categoria_editar'),  
-    # path('categorias/<int:pk>/eliminar/', Categoria_productoDeleteView.as_view(), name='categoria_eliminar'),  
+    # Categoria Producto URLs
+    path('categorias/', CategoriaProductoListView.as_view(), name='categoria_lista'),  
+    path('categorias/crear/', CategoriaProductoCreateView.as_view(), name='categoria_crear'),  
+    path('categorias/<int:pk>/editar/', CategoriaProductoUpdateView.as_view(), name='categoria_editar'),  
+    path('categorias/<int:pk>/eliminar/', CategoriaProductoDeleteView.as_view(), name='categoria_eliminar'),  
 
-    # # Marca Cosmetico URLs
-    # path('marcas/', Marca_productosListView.as_view(), name='marca_lista'),  
-    # path('marcas/crear/', Marca_productosCreateView.as_view(), name='marca_crear'),  
-    # path('marcas/<int:pk>/editar/', Marca_productosUpdateView.as_view(), name='marca_editar'),  
-    # path('marcas/<int:pk>/eliminar/', Marca_productosDeleteView.as_view(), name='marca_eliminar'),  
+    #  Marca Cosmetico URLs
+    path('marcas/', MarcaCosmeticoListView.as_view(), name='marca_lista'),  
+    path('marcas/crear/', MarcaCosmeticoCreateView.as_view(), name='marca_crear'),  
+    path('marcas/<int:pk>/editar/', MarcaCosmeticoUpdateView.as_view(), name='marca_editar'),  
+    path('marcas/<int:pk>/eliminar/', MarcaCosmeticoDeleteView.as_view(), name='marca_eliminar'),  
 
     # # PQR URLs
     # path('pqrs/', PqrListView.as_view(), name='pqr_lista'),  

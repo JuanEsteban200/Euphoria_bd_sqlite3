@@ -45,8 +45,11 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=100)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.IntegerField()
-    id_categoria = models.ForeignKey('CategoriaProducto', on_delete=models.CASCADE)
-    id_marca = models.ForeignKey('MarcaCosmetico', on_delete=models.CASCADE)
+    categoria = models.ForeignKey('CategoriaProducto', on_delete=models.CASCADE)
+    marca = models.ForeignKey('MarcaCosmetico', on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"{self.nombre} - {self.precio} - {self.stock} - {self.id_categoria} - {self.id_marca}"
 
 class Pedido(models.Model): 
     id_pedido = models.AutoField(primary_key=True)
@@ -99,7 +102,7 @@ class Promocion(models.Model):
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     descuento = models.DecimalField(max_digits=10, decimal_places=2)
-    producto = models.CharField(max_length=100)
+    id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     requisitos = models.TextField()
     rendimiento = models.TextField()
 
@@ -108,12 +111,18 @@ class CategoriaProducto(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
     
+    def __str__(self):
+        return self.nombre
+    
 class MarcaCosmetico(models.Model):
     id_marca = models.AutoField(primary_key=True)
     detalles = models.TextField()
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     cantidades = models.IntegerField()
     
+    def __str__(self):
+        return self.detalles
+
 
 class Pqr(models.Model):
     id_pqr = models.AutoField(primary_key=True)
