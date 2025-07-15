@@ -12,7 +12,7 @@ from apl_euphoria.Views.productos.views import ProductoListView, ProductoCreateV
 from apl_euphoria.Views.categoria_producto.views import CategoriaProductoListView, CategoriaProductoCreateView, CategoriaProductoUpdateView, CategoriaProductoDeleteView
 from apl_euphoria.Views.marca_producto.views import MarcaCosmeticoListView, MarcaCosmeticoCreateView, MarcaCosmeticoUpdateView, MarcaCosmeticoDeleteView
 # from apl_euphoria.Views.pqr.views import PqrListView, PqrCreateView, PqrUpdateView, PqrDeleteView
-from apl_euphoria.Views.administrador.views import AdministradorListView
+from apl_euphoria.Views.administrador.views import AdministradorListView, AdministradorCreateView, AdministradorUpdateView, AdministradorDeleteView
 # from apl_euphoria.Views.vendedor.views import VendedorListView, VendedorCreateView, VendedorUpdateView, VendedorDeleteView
 
 
@@ -21,9 +21,9 @@ app_name = 'apl_euphoria'
 urlpatterns = [
     #  Administrador URLs
     path('administradores/', AdministradorListView.as_view(), name='lista_administrador'),
-    #path('administradores/crear/', AdministradorCreateView.as_view(), name='administrador_crear'),
-    #path('administradores/<int:pk>/editar/', AdministradorUpdateView.as_view(), name='administrador_editar'),
-    #path('administradores/<int:pk>/eliminar/', AdministradorDeleteView.as_view(), name='administrador_eliminar'),
+    path('administradores/crear/', AdministradorCreateView.as_view(), name='administrador_crear'),
+    path('administradores/<int:pk>/editar/', AdministradorUpdateView.as_view(), name='administrador_editar'),
+    path('administradores/<int:pk>/eliminar/', AdministradorDeleteView.as_view(), name='administrador_eliminar'),
     
     # # Vendedor URLs
     # path('vendedores/', VendedorListView.as_view(), name='vendedor_lista'),
