@@ -2,7 +2,6 @@ from django.urls import path
 from apl_euphoria.views import index, gestion
 from apl_euphoria.Views.cliente.views import ClienteListView, ClienteCreateView, ClienteUpdateView, ClienteDeleteView
 from apl_euphoria.Views.productos.views import ProductoListView, ProductoCreateView, ProductoUpdateView, ProductoDeleteView
-from apl_euphoria.Views.productos.views_autocompletado import CategoriaAutocomplete, MarcaAutocomplete
 # from apl_euphoria.Views.pedidos.views import PedidoListView, PedidoCreateView, PedidoUpdateView, PedidoDeleteView
 # from apl_euphoria.Views.detalles_pedidos.views import Detalles_pedidoListView, DetallespedidoCreateView, DetallespedidoUpdateView, DetallespedidoDeleteView
 # from apl_euphoria.Views.pagos.views import PagoListView, PagoCreateView, PagoUpdateView, PagoDeleteView

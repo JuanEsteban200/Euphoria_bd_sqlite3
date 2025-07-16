@@ -1,5 +1,4 @@
 from django import forms
-from dal import autocomplete
 from apl_euphoria.models import Cliente,CategoriaProducto, MarcaCosmetico, Producto
 
 class ClienteForm(forms.Form):
@@ -71,14 +70,8 @@ class ProductoForm(forms.ModelForm):
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'precio': forms.NumberInput(attrs={'class': 'form-control'}),
             'stock': forms.NumberInput(attrs={'class': 'form-control'}),
-            'categoria': autocomplete.ModelSelect2(
-                url='apl_euphoria:categoria-autocomplete',  # Agrega el namespace
-                attrs={'class': 'form-control'}
-            ),
-            'marca': autocomplete.ModelSelect2(
-                url='apl_euphoria:marca-autocomplete',  # Agrega el namespace
-                attrs={'class': 'form-control'}
-            ),
+            'categoria': forms.Select(attrs={'class': 'form-control'}),
+            'marca': forms.Select(attrs={'class': 'form-control'}),
         }
     
     def clean_nombre(self):
