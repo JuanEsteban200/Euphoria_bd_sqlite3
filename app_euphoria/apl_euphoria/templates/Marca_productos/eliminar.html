@@ -1,0 +1,59 @@
+{% extends "body.html" %}
+{% block content %}
+
+<div class="eliminar-container">
+  <h1 class="titulo">🗑Eliminar Marca</h1>
+
+  <div class="eliminar-box">
+    <h2 class="text-danger mb-4">¿Deseas eliminar a esta marca?</h2>
+    <p><strong>ID de la marca:</strong> {{ object.id_categoria }}</p>
+    <p><strong>Detalles de la marca:</strong> {{ object.detalles }}</p>
+    <p><strong>Precio de la marca:</strong> {{ object.precio }}</p>
+     <p><strong>Cantidad de la marca:</strong> {{ object.cantidad }}</p>
+
+
+    <form method="post" class="eliminar-form">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">
+        <i class='far fa-trash-alt'></i> Sí, eliminar
+      </button>
+      <a href="{% url 'apl_euphoria:marca_lista' %}" class="btn btn-secondary">
+        <i class='fas fa-times'></i> Cancelar
+      </a>
+    </form>
+  </div>
+</div>
+
+
+
+
+<!-- Estilos CSS -->
+ <style>
+.eliminar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.titulo {
+  margin-bottom: 20px;
+  font-size: 2em;
+  text-align: center;
+}
+
+.eliminar-box {
+  background-color: #fff0ff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 520px;
+  font-family: sans-serif;
+}
+</style>
+
+
+{% endblock %}
