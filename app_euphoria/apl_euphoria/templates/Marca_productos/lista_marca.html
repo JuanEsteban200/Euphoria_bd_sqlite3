@@ -51,6 +51,7 @@
                 <thead>
                   <tr>
                     <th>ID</th>
+                    <th>Nombre</th>
                     <th>Detalles</th>
                     <th>Precio</th>
                     <th>Cantidades</th>
@@ -61,6 +62,7 @@
                   {% for marca in object_list %}
                   <tr>
                     <td>{{ marca.id_marca }}</td>
+                    <td>{{ marca.nombre }}</td>
                     <td>{{ marca.detalles }}</td>
                     <td>{{ marca.precio }}</td>
                     <td>{{ marca.cantidades }}</td>

@@ -1,4 +1,5 @@
 from django import forms
+from dal import autocomplete
 from apl_euphoria.models import Cliente,CategoriaProducto, MarcaCosmetico, Producto
 
 class ClienteForm(forms.Form):
@@ -45,7 +46,7 @@ class CategoriaProductoForm(forms.ModelForm):
             raise forms.ValidationError("El campo Nombre es obligatorio.")
         return nombre
     
-# forms de marca  
+# formulario de marca  para crear o editar una marca de cosmético
 class MarcaCosmeticoForm(forms.ModelForm):
     class Meta:
         model = MarcaCosmetico
@@ -65,13 +66,19 @@ class MarcaCosmeticoForm(forms.ModelForm):
 class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
-        fields = ['nombre', 'precio', 'stock', 'id_categoria', 'id_marca']
+        fields = ['nombre', 'precio', 'stock', 'categoria', 'marca']
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'precio': forms.NumberInput(attrs={'class': 'form-control'}),
             'stock': forms.NumberInput(attrs={'class': 'form-control'}),
-            'id_categoria': forms.Select(attrs={'class': 'form-control'}),
-            'id_marca': forms.Select(attrs={'class': 'form-control'}),
+            'categoria': autocomplete.ModelSelect2(
+                url='apl_euphoria:categoria-autocomplete',  # Agrega el namespace
+                attrs={'class': 'form-control'}
+            ),
+            'marca': autocomplete.ModelSelect2(
+                url='apl_euphoria:marca-autocomplete',  # Agrega el namespace
+                attrs={'class': 'form-control'}
+            ),
         }
     
     def clean_nombre(self):

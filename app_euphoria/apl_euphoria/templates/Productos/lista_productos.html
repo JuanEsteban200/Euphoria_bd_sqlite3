@@ -69,12 +69,12 @@
                     <td>{{ producto.categoria }}</td>
                     <td>{{ producto.marca }}</td>
                     <td>
-                      <a href="{% url 'apl_euphoria:producto_editar' producto.id_producto %}"
+                     <a href="{% url 'apl_euphoria:producto_editar' producto.id_producto %}" class="btn btn-info btn-xs btn-editar" data-url="{% url 'apl_euphoria:producto_editar' producto.id_producto %}">
                         <i class='fas fa-edit'></i>
                       </a>
-                      <a href="{% url 'apl_euphoria:producto_eliminar' producto.id_producto %}" 
+                      <a href="{% url 'apl_euphoria:producto_eliminar' producto.id_producto %}" class="btn btn-danger btn-xs btn-eliminar" data-url="{% url 'apl_euphoria:producto_eliminar' producto.id_producto %}">
                         <i class='far fa-trash-alt'></i>
-                      </a> 
+                      </a>
                     </td>
                   </tr>
                   {% endfor %}
@@ -164,10 +164,27 @@
   });
 </script>
 
+
 <!-- SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Estilo personalizado (opcional) -->
 <link rel="stylesheet" href="{% static 'css/tabla.css' %}">
+
+<!--mensaje de exito al guardar-->
+{% block extra_scripts %}
+<script>
+  {% if messages %}
+    {% for message in messages %}
+      Swal.fire({
+        icon: 'success',
+        title: '{{ message|escapejs }}',
+        showConfirmButton: false,
+        timer: 2000
+      });
+    {% endfor %}
+  {% endif %}
+</script>
+{% endblock %}
 
 {% endblock %}

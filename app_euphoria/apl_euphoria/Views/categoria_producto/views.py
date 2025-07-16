@@ -46,6 +46,7 @@ class CategoriaProductoCreateView(CreateView):
        context['titulo'] = 'Crear Categoria'
        
        return context
+    
 class CategoriaProductoUpdateView(UpdateView):
     model = CategoriaProducto
     template_name = "Categoria_productos/editar.html"
@@ -63,6 +64,7 @@ class CategoriaProductoUpdateView(UpdateView):
        context['titulo'] = 'Editar Categoria'
        
        return context
+    
 class CategoriaProductoDeleteView(DeleteView):
     model = CategoriaProducto
     template_name = "Categoria_productos/eliminar.html"
@@ -79,3 +81,4 @@ class CategoriaProductoDeleteView(DeleteView):
        context['titulo'] = 'Eliminar Categoria'
        
        return context
+    
