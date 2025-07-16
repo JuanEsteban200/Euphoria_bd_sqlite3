@@ -1,6 +1,4 @@
 {% load static %}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"></a>
     <div class="container-fluid">
@@ -19,8 +17,10 @@
                 <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Módulos</a>
-                    <ul class="dropdown-menu">
+                    <a class="nav-link dropdown-toggle" href="#" id="modulosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Módulos
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="modulosDropdown">
                         <li><a class="dropdown-item" href="#">Clientes</a></li>
                         <li><a class="dropdown-item" href="#">Productos</a></li>
                     </ul>
@@ -41,51 +41,112 @@
                     <i class="fas fa-bell fa-lg text-muted"></i>
                     <span class="badge bg-warning text-dark rounded-pill badge-custom">15</span>
                 </div>
-                <i class="fas fa-th fa-lg text-muted"></i>
+                <div class="position-relative">
+                    <i class="fas fa-user fa-lg text-muted"></i>
+                    <span class="badge bg-success rounded-pill badge-custom">1</span>
+                </div>
             </div>
-        </div>
     </div>
 </nav>
-
 <style>
-    .navbar-custom {
-        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), #ff00f7;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 8px 25px;
-    }
+/* ===== Navbar personalizado con glassmorphism ===== */
+.navbar-custom {
+    background: linear-gradient(145deg, rgba(32, 0, 44, 0.8), rgba(104, 0, 144, 0.8));
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    padding: 12px 30px;
+    z-index: 10;
+}
 
-    .logo-img {
-        height: 55px;
-        width: 170px;
-    }
+/* Logo */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+.logo-img {
+    width: 140px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+.logo-img:hover {
+    transform: scale(1.05);
+}
 
-    .logo-img:hover {
-        transform: scale(1.1);
-    }
+/* Links de navegación */
+.navbar-nav .nav-link {
+    color: #f1f1f1;
+    font-weight: 600;
+    margin-right: 16px;
+    transition: color 0.3s ease;
+}
+.navbar-nav .nav-link:hover {
+    color: #ff5ec3;
+}
 
-    .nav-link {
-        font-weight: 500;
-        color: #fcf6f6;
-        transition: color 0.3s ease;
-        margin-right: 10px;
-    }
+/* Dropdown */
+.dropdown-menu {
+    background: #1e1e2f;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+}
+.dropdown-menu .dropdown-item {
+    color: #f8f8f8;
+    transition: background 0.3s ease;
+}
+.dropdown-menu .dropdown-item:hover {
+    background-color: #34344e;
+}
 
-    .nav-link:hover {
-        color: #d63384;
-    }
+/* Buscador */
+form.d-flex input {
+    border-radius: 20px;
+    padding: 5px 15px;
+    border: none;
+    transition: box-shadow 0.3s ease;
+}
+form.d-flex input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #ff5ec3;
+}
+form.d-flex .btn {
+    border-radius: 20px;
+    margin-left: 8px;
+    border: none;
+    background-color: #ff5ec3;
+    color: white;
+}
+form.d-flex .btn:hover {
+    background-color: #e048aa;
+}
 
-    .badge-custom {
-        position: absolute;
-        top: -6px;
-        right: -6px;
-        font-size: 0.6rem;
-        padding: 3px 6px;
-    }
+/* Iconos con notificaciones */
+.badge-custom {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    font-size: 0.65rem;
+    padding: 3px 6px;
+}
+.position-relative i {
+    color: #ddd;
+    transition: transform 0.3s ease;
+    margin-left: 10px;
+}
+.position-relative:hover i {
+    transform: scale(1.2);
+    color: #ff5ec3;
+}
+.position-relative i fas fa-user fa-lg text-muted{
+    color: #ff5ec3;
+}
+.text-muted {
+    color: #ffffff !important;
+}
+.text-muted:hover {
+    color: #212121 !important;
+}
 
-    .form-control.form-control-sm[type="search"] {
-        max-width: 180px;
-        min-width: 120px;
-        width: 100%;
-        transition: none;
-    }
-</style>
+
+    </style>
