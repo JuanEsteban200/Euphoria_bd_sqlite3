@@ -1,0 +1,29 @@
+{% load static %}
+<div class="sidebar-sticky pt-3">
+    <ul class="nav flex-column sidebar-menu">
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="#">
+                <i class="fas fa-home fa-fw me-3"></i>
+                <span class="sidebar-text">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center {% if 'producto_lista' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'apl_euphoria:producto_lista' %}">
+                <i class="fas fa-box fa-fw me-3"></i>
+                <span class="sidebar-text">Productos</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="{% url 'apl_euphoria:cliente_lista' %}">
+                <i class="fas fa-users fa-fw me-3"></i>
+                <span class="sidebar-text">Clientes</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="{% url 'apl_euphoria:lista_administrador' %}">
+                <i class="fas fa-users fa-fw me-3"></i>
+                <span class="sidebar-text">Administrador</span>
+            </a>
+        </li>
+        </ul>
+</div>

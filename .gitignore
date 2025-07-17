@@ -1,5 +1,5 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
+_pycache_/
 *.py[cod]
 *$py.class
 
@@ -17,7 +17,7 @@ staticfiles/
 
 # Migrations
 **/migrations/
-!*/migrations/__init__.py
+!*/migrations/_init_.py
 
 # IDEs
 .vscode/
