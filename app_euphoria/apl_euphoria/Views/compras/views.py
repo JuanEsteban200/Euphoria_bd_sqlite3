@@ -31,7 +31,7 @@ class CompraCreateView(CreateView):
     model = Compra
     template_name = "Compras/crear.html"
     fields = '__all__'
-    success_url = reverse_lazy('apl_euphoria:compra_lista')
+    success_url = reverse_lazy('apl_euphoria:compra_Lista')
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
@@ -44,9 +44,9 @@ class CompraCreateView(CreateView):
         return context
 class CompraUpdateView(UpdateView):
     model = Compra
-    template_name = "Compras/editar.html"
+    template_name = "compra/editar.html"
     fields = '__all__'
-    success_url = reverse_lazy('apl_euphoria:compra_lista')
+    success_url = reverse_lazy('apl_euphoria:compra_Lista')
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
@@ -59,7 +59,7 @@ class CompraUpdateView(UpdateView):
         return context
 class CompraDeleteView(DeleteView):
     model = Compra
-    template_name = "Compras/eliminar.html"
+    template_name = "compra/eliminar.html"
     success_url = reverse_lazy('apl_euphoria:compra_lista')
 
     @method_decorator(csrf_exempt)

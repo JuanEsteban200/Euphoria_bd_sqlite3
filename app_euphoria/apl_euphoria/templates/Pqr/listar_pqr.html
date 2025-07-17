@@ -65,13 +65,13 @@
                     <td>{{ pqr.correo }}</td>
                     <td>{{ pqr.numero_telefono }}</td>
                     <td>
-                      <a href="{% url 'apl_euphoria:pqr_editar' pqr.id %}" class="btn btn-editar btn-xs" data-url="{% url 'apl_euphoria:pqr_editar' pqr.id %}">
+                      <a href="{% url 'apl_euphoria:pqr_editar' pqr.id %}" class="btn btn-editar btn-xs" >
                         <i class='fas fa-edit'></i>
                       </a>
 
 
 
-                      <a href="{% url 'apl_euphoria:pqr_eliminar' pqr.id %}" class="btn btn-danger btn-xs btn-eliminar" data-url="{% url 'apl_euphoria:pqr_eliminar' pqr.id %}">
+                      <a href="{% url 'apl_euphoria:pqr_eliminar' pqr.id %}" class="btn btn-danger btn-xs btn-eliminar" >
                         <i class='far fa-trash-alt'></i>
                       </a> 
                     </td>
