@@ -1,6 +1,6 @@
 from django import forms
 from dal import autocomplete
-from apl_euphoria.models import Cliente,CategoriaProducto, MarcaCosmetico, Producto
+from apl_euphoria.models import Cliente,CategoriaProducto, MarcaCosmetico, Producto, Pedido, DetallePedido, Venta
 
 class ClienteForm(forms.Form):
     nombre = forms.CharField(label='Nombre', max_length=100, required=True)
@@ -87,3 +87,75 @@ class ProductoForm(forms.ModelForm):
             raise forms.ValidationError("El campo Nombre es obligatorio.")
         return nombre
     
+class PedidoForm(forms.ModelForm):
+    class Meta:
+        model = Pedido
+        fields = ['id_cliente', 'fecha']
+        widgets = {
+            'id_cliente': autocomplete.ModelSelect2(
+                url='apl_euphoria:cliente-autocomplete',  # Agrega el namespace
+                attrs={'class': 'form-control'}
+            ),
+            'fecha': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+        }
+    
+    def clean_fecha(self):
+        fecha = self.cleaned_data.get('fecha')
+        if not fecha:
+            raise forms.ValidationError("El campo Fecha es obligatorio.")
+        return fecha
+class DetallePedidoForm(forms.ModelForm):
+    class Meta:
+        model = DetallePedido
+        fields = ['id_pedido', 'id_producto', 'cantidad']
+        widgets = {
+            'id_pedido': autocomplete.ModelSelect2(
+                url='apl_euphoria:pedido-autocomplete',  # Agrega el namespace
+                attrs={'class': 'form-control'}
+            ),
+            'id_producto': autocomplete.ModelSelect2(
+                url='apl_euphoria:producto-autocomplete',  # Agrega el namespace
+                attrs={'class': 'form-control'}
+            ),
+            'cantidad': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
+    
+    def clean_cantidad(self):
+        cantidad = self.cleaned_data.get('cantidad')
+        if cantidad <= 0:
+            raise forms.ValidationError("La cantidad debe ser mayor que cero.")
+        return cantidad
+class VentaForm(forms.ModelForm):
+    class Meta:
+        model = Venta
+        fields = ['id_vendedor', 'detalles', 'total', 'subtotal', 'fecha', 'cantidad', 'id_administrador', 'id_pedido', 'id_producto']
+        widgets = {
+            'id_vendedor': autocomplete.ModelSelect2(
+                url='apl_euphoria:vendedor-autocomplete',  # Agrega el namespace
+                attrs={'class': 'form-control'}
+            ),
+            
+            'total': forms.NumberInput(attrs={'class': 'form-control'}),
+            'subtotal': forms.NumberInput(attrs={'class': 'form-control'}),
+            'fecha': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'cantidad': forms.NumberInput(attrs={'class': 'form-control'}),
+            'id_administrador': autocomplete.ModelSelect2(
+                url='apl_euphoria:administrador-autocomplete',  # Agrega el namespace
+                attrs={'class': 'form-control'}
+            ),
+            'id_pedido': autocomplete.ModelSelect2(
+                url='apl_euphoria:pedido-autocomplete',  # Agrega el namespace
+                attrs={'class': 'form-control'}
+            ),
+            'id_producto': autocomplete.ModelSelect2(
+                url='apl_euphoria:producto-autocomplete',  # Agrega el namespace
+                attrs={'class': 'form-control'}
+            ),
+            'detalles': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+        }
+    
+    def clean_total(self):
+        total = self.cleaned_data.get('total')
+        if total <= 0:
+            raise forms.ValidationError("El total debe ser mayor que cero.")
+        return total

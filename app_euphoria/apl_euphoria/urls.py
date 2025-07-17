@@ -3,8 +3,8 @@ from apl_euphoria.views import index, gestion
 from apl_euphoria.Views.cliente.views import ClienteListView, ClienteCreateView, ClienteUpdateView, ClienteDeleteView
 from apl_euphoria.Views.productos.views import ProductoListView, ProductoCreateView, ProductoUpdateView, ProductoDeleteView
 from apl_euphoria.Views.productos.views_autocompletado import CategoriaAutocomplete, MarcaAutocomplete
-# from apl_euphoria.Views.pedidos.views import PedidoListView, PedidoCreateView, PedidoUpdateView, PedidoDeleteView
-# from apl_euphoria.Views.detalles_pedidos.views import Detalles_pedidoListView, DetallespedidoCreateView, DetallespedidoUpdateView, DetallespedidoDeleteView
+from apl_euphoria.Views.pedidos.views import PedidoListView, PedidoCreateView, PedidoUpdateView, PedidoDeleteView
+from apl_euphoria.Views.detalles_pedidos.views import Detalles_pedidoListView, DetallespedidoCreateView, DetallespedidoUpdateView, DetallespedidoDeleteView
 # from apl_euphoria.Views.pagos.views import PagoListView, PagoCreateView, PagoUpdateView, PagoDeleteView
 # from apl_euphoria.Views.proveedores.views import ProveedorListView, ProveedorCreateView, ProveedorUpdateView, ProveedorDeleteView
 from apl_euphoria.Views.compras.views import CompraListView, CompraCreateView, CompraUpdateView, CompraDeleteView
@@ -15,7 +15,7 @@ from apl_euphoria.Views.marca_producto.views import MarcaCosmeticoListView, Marc
 from apl_euphoria.Views.pqr.views import PqrListView, PqrCreateView, PqrUpdateView, PqrDeleteView
 from apl_euphoria.Views.administrador.views import AdministradorListView, AdministradorCreateView, AdministradorUpdateView, AdministradorDeleteView
 # from apl_euphoria.Views.vendedor.views import VendedorListView, VendedorCreateView, VendedorUpdateView, VendedorDeleteView
-
+from apl_euphoria.Views.ventas.views import VentaListView, VentaCreateView, VentaUpdateView, VentaDeleteView
 
 app_name = 'apl_euphoria'
 
@@ -33,10 +33,10 @@ urlpatterns = [
     # path('vendedores/<int:pk>/eliminar/', VendedorDeleteView.as_view(), name='vendedor_eliminar'),
     
     # Venta URLs
-    # path('ventas/', VentaListView.as_view(), name='venta_lista'),
-    # path('ventas/crear/', VentaCreateView.as_view(), name='venta_crear'),
-    # path('ventas/<int:pk>/editar/', VentaUpdateView.as_view(), name='venta_editar'),
-    # path('ventas/<int:pk>/eliminar/', VentaDeleteView.as_view(), name='venta_eliminar'),
+     path('ventas/', VentaListView.as_view(), name='venta_lista'),
+     path('ventas/crear/', VentaCreateView.as_view(), name='venta_crear'),
+     path('ventas/<int:pk>/editar/', VentaUpdateView.as_view(), name='venta_editar'),
+     path('ventas/<int:pk>/eliminar/', VentaDeleteView.as_view(), name='venta_eliminar'),
     
     # Cliente URLs
     path('clientes/', ClienteListView.as_view(), name='cliente_lista'),  
@@ -52,16 +52,16 @@ urlpatterns = [
     
 
     # # Pedido URLs
-    # path('pedidos/', PedidoListView.as_view(), name='pedido_lista'),  
-    # path('pedidos/crear/', PedidoCreateView.as_view(), name='pedido_crear'),  
-    # path('pedidos/<int:pk>/editar/', PedidoUpdateView.as_view(), name='pedido_editar'),  
-    # path('pedidos/<int:pk>/eliminar/', PedidoDeleteView.as_view(), name='pedido_eliminar'),  
+     path('pedidos/', PedidoListView.as_view(), name='pedido_lista'),  
+     path('pedidos/crear/', PedidoCreateView.as_view(), name='pedido_crear'),  
+     path('pedidos/<int:pk>/editar/', PedidoUpdateView.as_view(), name='pedido_editar'),  
+     path('pedidos/<int:pk>/eliminar/', PedidoDeleteView.as_view(), name='pedido_eliminar'),  
 
     # # Detalle Pedido URLs
-    # path('detalles-pedido/', Detalles_pedidoListView.as_view(), name='detalle_pedido_lista'), 
-    # path('detalles-pedido/crear/', DetallespedidoCreateView.as_view(), name='detalle_pedido_crear'),  
-    # path('detalles-pedido/<int:pk>/editar/', DetallespedidoUpdateView.as_view(), name='detalle_pedido_editar'),  
-    # path('detalles-pedido/<int:pk>/eliminar/', DetallespedidoDeleteView.as_view(), name='detalle_pedido_eliminar'),  
+     path('detalles-pedido/', Detalles_pedidoListView.as_view(), name='detalle_pedido_lista'), 
+     path('detalles-pedido/crear/', DetallespedidoCreateView.as_view(), name='detalle_pedido_crear'),  
+     path('detalles-pedido/<int:pk>/editar/', DetallespedidoUpdateView.as_view(), name='detalle_pedido_editar'),  
+     path('detalles-pedido/<int:pk>/eliminar/', DetallespedidoDeleteView.as_view(), name='detalle_pedido_eliminar'),  
 
     # # Pago URLs
     # path('pagos/', PagoListView.as_view(), name='pago_lista'),  

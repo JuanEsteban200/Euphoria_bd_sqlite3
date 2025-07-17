@@ -19,10 +19,11 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fas fa-shopping-cart me-2"></i> Ventas
-            </a>
-        </li>
+    <a href="{% url 'apl_euphoria:venta_lista' %}" class="nav-link {% if request.resolver_match.url_name == 'venta_lista' %}active{% endif %}">
+        <i class="fas fa-shopping-cart me-2"></i> Ventas
+    </a>
+</li>
+
         <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="fas fa-file-invoice me-2"></i> Facturación
@@ -51,6 +52,16 @@
         <li class="nav-item">
             <a href="{% url 'apl_euphoria:producto_lista' %}" class="nav-link {% if request.resolver_match.url_name == 'producto_lista' %}active{% endif %}">
                 <i class="fas fa-spray-can"></i> Productos
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'apl_euphoria:pedido_lista' %}" class="nav-link {% if request.resolver_match.url_name == 'producto_lista' %}active{% endif %}">
+                <i class="fas fa-spray-can"></i> Pedidos
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'apl_euphoria:detalle_pedido_lista' %}" class="nav-link {% if request.resolver_match.url_name == 'producto_lista' %}active{% endif %}">
+                <i class="fas fa-spray-can"></i> Detalles de Pedidos
             </a>
         </li>
         <li class="nav-item">
