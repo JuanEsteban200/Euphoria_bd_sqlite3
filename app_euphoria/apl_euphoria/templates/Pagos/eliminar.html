@@ -1,0 +1,36 @@
+{% extends "body.html" %}
+{%load static %}
+{% block content %}
+
+
+<div class="eliminar-container">
+  <h1 class="titulo">🗑️Eliminar Pago</h1>
+
+  <div class="eliminar-box">
+    <h2 class="text-danger mb-4">¿Deseas eliminar este Pago?</h2>
+    <p><strong>ID del pago:</strong> {{ object.id_pago }}</p>
+    <p><strong>ID del cliente:</strong> {{ object.id_cliente }}</p>
+    <p><strong>Metodo de pago:</strong> {{ object.metodo_pago }}</p>
+    <p><strong>Monto:</strong> {{ object.monto }}</p>
+    <p><strong>Fecha:</strong> {{ object.fecha_pago }}</p>
+    <p><strong>Confirmación del pago:</strong> {{ object.confirmacion_pago }}</p>
+
+    <form method="post" class="eliminar-form">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">
+        <i class='far fa-trash-alt'></i> Sí, eliminar
+      </button>
+      <a href="{% url 'apl_euphoria:pago_lista' %}" class="btn btn-secondary">
+        <i class='fas fa-times'></i> Cancelar
+      </a>
+    </form>
+  </div>
+</div>
+
+
+
+
+<!-- Estilos CSS -->
+ 
+<link rel="stylesheet" href="{% static 'css/eliminar.css' %}">
+{%endblock %}

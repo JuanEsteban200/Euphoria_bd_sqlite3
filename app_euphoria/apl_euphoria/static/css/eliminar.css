@@ -1,0 +1,39 @@
+.eliminar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.titulo {
+  margin-bottom: 20px;
+  font-size: 2em;
+  text-align: center;
+}
+
+.eliminar-box {
+ background: linear-gradient(135deg, #b42faf 0%, #f6e7d7 50%, #f9d29d 100%);
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 520px;
+  font-family: sans-serif;
+}
+form .btn-danger {
+  background-color: #ec2e28;
+  color: white;
+}
+.btn-secondary:hover {
+  background-color: #b52621;
+}
+
+form .btn-secondary {
+  background-color: #858484;
+  color: white;
+}
+.btn-secondary:hover {
+  background-color: #626366;
+}

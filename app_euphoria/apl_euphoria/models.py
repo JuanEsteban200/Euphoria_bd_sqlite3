@@ -90,11 +90,15 @@ class Compra(models.Model):
 
 class Factura(models.Model):
     id_factura = models.AutoField(primary_key=True)
-    id_pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
-    numero = models.CharField(max_length=100)
+    id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     fecha = models.DateField()
+    nombre_cliente = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    metodo_pago = models.CharField(max_length=100)
+    cantidad = models.IntegerField()
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
     total = models.DecimalField(max_digits=10, decimal_places=2)
-    id_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+ 
 
 class Promocion(models.Model):
     id_promocion = models.AutoField(primary_key=True)

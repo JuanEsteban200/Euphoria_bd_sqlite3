@@ -1,0 +1,155 @@
+{% extends 'body.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+.btn-success.btn-sm {   
+  background-color: #d170f1 !important; /* verde Bootstrap */
+  border: NONE;
+  color: #fff !important;
+  
+}       
+.btn-success.btn-sm:hover, .btn-success.btn-sm:focus {
+  background-color: #C79CFF !important;
+  border-color: #1e7e34 !important;
+  color: #fff !important;
+}
+.btn-editar {
+  background-color: #6fa7ca !important; /* azul Bootstrap */
+  border: NONE;
+  color: #fff !important;
+}
+</style>
+
+<link rel="stylesheet" href="{% static 'css/tabla.css' %}">
+
+<!-- ===================== CONTENIDO ===================== -->
+
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-md-12">
+        <h1>Lista de Facturas</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Tabla de Facturas</h3>
+            <div class="card-tools">
+              <a href="{% url 'apl_euphoria:factura_crear' %}" class="btn btn-success btn-sm">
+                <i class="fas fa-plus"></i> Agregar Factura
+              </a>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <table id="tabla-facturas" class="table table-bordered table-striped dt-responsive nowrap">
+              <thead>
+                <tr>
+                  <th>Id Factura</th>
+                  <th>Id Producto</th>
+                  <th>Id Pago</th>
+                  <th>Fecha de pago</th>
+                  <th>Nombre del cliente</th>
+                  <th>Descripcion</th>
+                  <th>Cantidad</th>
+                  <th>Precio. Uni</th>
+                  <th>Total</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for factura in object_list %}
+                <tr>
+                  <td>{{ factura.id_factura }}</td>
+                  <td>{{ factura.id_producto }}</td>
+                  <td>{{ factura.id_pago }}</td>
+                  <td>{{ factura.fecha }}</td>
+                  <td>{{ factura.nombre_cliente }}</td>
+                  <td>{{ factura.cantidad }}</td>
+                  <td>{{ factura.presio_unitario }}</td>
+                  <td>{{ factura.total}}</td>
+
+                  <td>
+                    <a href="{% url 'apl_euphoria:factura_editar' factura.id_factura %}" class="btn btn-info btn-xs btn-editar" data-url="{% url 'apl_euphoria:factura_editar' factura.id_factura %}">
+                        <i class='fas fa-edit'></i>
+                      </a>
+                      <a href="{% url 'apl_euphoria:factura_eliminar' factura.id_factura %}" class="btn btn-danger btn-xs btn-eliminar" data-url="{% url 'apl_euphoria:factura_eliminar' factura.id_factura %}">
+                        <i class='far fa-trash-alt'></i>
+                      </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LIBRERÍAS ===================== -->
+<!-- DataTables -->
+<link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}" />
+<link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}" />
+<script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'lib/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- ===================== SCRIPT INICIAL ===================== -->
+<script>
+  $(document).ready(function () {
+    $('#tabla-pagos').DataTable({
+      responsive: true,
+      autoWidth: false,
+      dom: '<"top"lf>rt<"bottom"ip><"clear">',
+      lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]],
+      language: {
+        sProcessing: "Procesando...",
+        sLengthMenu: "Mostrar _MENU_ registros",
+        sZeroRecords: "No se encontraron resultados",
+        sEmptyTable: "Ningún dato disponible en esta tabla",
+        sInfo: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+        sInfoEmpty: "Mostrando 0 a 0 de 0 registros",
+        sInfoFiltered: "(filtrado de _MAX_ registros totales)",
+        sSearch: "Buscar:",
+        oPaginate: {
+          sFirst: "Primero",
+          sLast: "Último",
+          sNext: "Siguiente",
+          sPrevious: "Anterior"
+        }
+      }
+    });
+
+</script>
+<!--mensaje de exito al guardar-->
+{% block extra_scripts %}
+<script>
+  {% if messages %}
+    {% for message in messages %}
+      Swal.fire({
+        icon: 'success',
+        title: '{{ message|escapejs }}',
+        showConfirmButton: false,
+        timer: 2000
+      });
+    {% endfor %}
+  {% endif %}
+</script>
+{% endblock %}
+
+{% endblock %}

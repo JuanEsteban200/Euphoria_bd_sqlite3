@@ -4,6 +4,26 @@
   color: #2a82bd;
 }
 
+.btn-success.btn-sm {     
+  background-color: #d170f1 !important;
+  border: none;
+  color: #fff !important;
+}       
+.btn-success.btn-sm:hover, .btn-success.btn-sm:focus {
+  background-color: #C79CFF !important;
+  border-color: #1e7e34 !important;
+  color: #fff !important;
+}
+.btn-editar {
+  background-color: #6fa7ca !important;
+  border: none;
+  color: #fff !important;
+}
+.table td {
+  vertical-align: middle;
+  text-align: left;
+}
+
 /* Contenedor superior de la tabla (mostrar registros + buscador) */
 .dataTables_wrapper .dataTables_length,
 .dataTables_wrapper .dataTables_filter {

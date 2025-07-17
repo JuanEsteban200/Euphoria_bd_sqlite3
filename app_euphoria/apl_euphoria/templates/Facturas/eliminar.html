@@ -1,0 +1,36 @@
+{% extends "body.html" %}
+{%load static %}
+{% block content %}
+
+
+<div class="eliminar-container">
+  <h1 class="titulo">🗑️Eliminar Factura</h1>
+
+  <div class="eliminar-box">
+    <h2 class="text-danger mb-4">¿Deseas eliminar esta factura?</h2>
+    <p><strong>ID de la Factura:</strong> {{ object.id_factura }}</p>
+    <p><strong>ID del pedido:</strong> {{ object.id_pedido }}</p>
+    <p><strong>ID del cliente:</strong> {{ object.id_cliente }}</p>
+    <p><strong>Numero:</strong> {{ object.numero }}</p>
+    <p><strong>Fecha:</strong> {{ object.fecha }}</p>
+    <p><strong>Total:</strong> {{ object.total }}</p>
+
+    <form method="post" class="eliminar-form">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">
+        <i class='far fa-trash-alt'></i> Sí, eliminar
+      </button>
+      <a href="{% url 'apl_euphoria:factura_lista' %}" class="btn btn-secondary">
+        <i class='fas fa-times'></i> Cancelar
+      </a>
+    </form>
+  </div>
+</div>
+
+
+
+
+<!-- Estilos CSS -->
+ 
+<link rel="stylesheet" href="{% static 'css/eliminar.css' %}">
+{%endblock %}
