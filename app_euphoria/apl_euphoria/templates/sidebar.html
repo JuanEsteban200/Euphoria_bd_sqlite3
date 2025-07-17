@@ -1,76 +1,29 @@
-<!-- Sidebar/Navigation -->
 {% load static %}
-<div class="row">
-    <ul class="sidebar-menu nav flex-column">
+<div class="sidebar-sticky pt-3">
+    <ul class="nav flex-column sidebar-menu">
         <li class="nav-item">
-            <a href="#" class="nav-link active">
-                <i class="fas fa-home me-2"></i>
-                Dashboard
+            <a class="nav-link d-flex align-items-center" href="#">
+                <i class="fas fa-home fa-fw me-3"></i>
+                <span class="sidebar-text">Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
-            <a href="{% url 'apl_euphoria:cliente_lista' %}" class="nav-link">
-                <i class="fas fa-users me-2"></i>
-                Clientes
+            <a class="nav-link d-flex align-items-center {% if 'producto_lista' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'apl_euphoria:producto_lista' %}">
+                <i class="fas fa-box fa-fw me-3"></i>
+                <span class="sidebar-text">Productos</span>
             </a>
         </li>
         <li class="nav-item">
-            <a href="{% url 'apl_euphoria:lista_administrador' %}" class="nav-link">
-                <i class="fas fa-box me-2"></i>
-                Administradores
+            <a class="nav-link d-flex align-items-center" href="{% url 'apl_euphoria:cliente_lista' %}">
+                <i class="fas fa-users fa-fw me-3"></i>
+                <span class="sidebar-text">Clientes</span>
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fas fa-shopping-cart me-2"></i>
-                Ventas
+            <a class="nav-link d-flex align-items-center" href="{% url 'apl_euphoria:lista_administrador' %}">
+                <i class="fas fa-users fa-fw me-3"></i>
+                <span class="sidebar-text">Administrador</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fas fa-file-invoice me-2"></i>
-                Facturación
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fas fa-chart-bar me-2"></i>
-                Reportes
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fas fa-cog me-2"></i>
-                Configuración
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{% url 'apl_euphoria:categoria_lista' %}" class="nav-link">
-                <i class="fas fa-tags me-2"></i>
-                Categorías
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{% url 'apl_euphoria:marca_lista' %}" class="nav-link">
-                 <i class="far fa-copyright"></i>
-                Marcas
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="{% url 'apl_euphoria:producto_lista' %}" class="nav-link">
-                <i class="fas fa-spray-can"></i>
-                Productos
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fas fa-headset me-2"></i>
-                Soporte
-            </a>
-        </li>
-       
-        
-    </ul>
+        </ul>
 </div>

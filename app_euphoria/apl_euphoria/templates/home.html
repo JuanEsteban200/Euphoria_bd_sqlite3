@@ -1,10 +1,12 @@
+<!-- templates/home.html -->
 {% extends 'body.html' %}
-{% load static %}
-
-{% block title %}Euphoria - Index{% endblock %}
-
+{% block title %}Euphoria - Inicio{% endblock %}
 {% block extra_head %}
-    {% block extra_css %}
-        <link rel="stylesheet" href="{% static 'css/customs.css' %}">
-    {% endblock %}
+    {% block extra_css %}{% endblock %}
+{% endblock %}
+{% block content %}
+<div class="p-4">
+    <h1>Bienvenido a Euphoria</h1>
+    <p>Este es tu panel principal.</p>
+</div>
 {% endblock %}

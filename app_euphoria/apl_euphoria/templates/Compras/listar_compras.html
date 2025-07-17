@@ -1,174 +1,68 @@
 {% extends 'body.html' %}
-{% block content %}
+
 {% load static %}
 
-<style>
-.btn-success.btn-sm {     
-  background-color: #d170f1 !important; /* verde Bootstrap */
-  border: NONE;
-  color: #fff !important;
-}       
-.btn-success.btn-sm:hover, .btn-success.btn-sm:focus {
-  background-color: #C79CFF !important;
-  border-color: #1e7e34 !important;
-  color: #fff !important;
-}
-.btn-editar {
-  background-color: #6fa7ca !important; /* azul Bootstrap */
-  border: NONE;
-  color: #fff !important;
-}
-</style>
+{% block content %}
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h3 class="card-title mb-0">Tabla de Compras</h3>
+    <a href="{% url 'apl_euphoria:compra_crear' %}" class="btn btn-primary btn-sm">
+      <i class="fas fa-plus me-1"></i> Agregar compra
+    </a>
+    
+  </div>
+  <div class="card-body">
+    <table id="tabla-generica" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Proveedor</th>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Fecha</th>
+          <th>Precio</th>
+          <th>Administrador</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for compra in compra_list %}
+        <tr>
+          <td>{{compra.id_compra }}</td>
+          <td>{{compra.nombre }}</td>
+          <td>{{compra.proveedor }}</td>
+          <td>{{compra.producto }}</td>
+          <td>${{compra.precio|floatformat:2 }}</td>
+          <td>{{compra.cantidad }}</td>
+          <td>{{compra.fecha }}</td>
+          <td>{{compra.administrador}}</td>
+          <td class="text-center">
+            <a href="{% url 'apl_euphoria:compra_editar' compra.id_compra %}" class="btn btn-info btn-sm" title="Editar">
+              <i class='fas fa-edit'></i>
+            </a>
+            <a href="{% url 'apl_euphoria:compra_eliminar' compra.id_compra %}" class="btn btn-danger btn-sm" title="Eliminar">
+              <i class='far fa-trash-alt'></i>
+            </a> 
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  
+{% endblock %}
 
-<!-- Contenido -->
-<div class="content-wrapper">
-  <section class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-md-12">
-          <h1> COMPRAS</h1>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Tabla de compras</h3>
-              <div class="card-tools">
-                <a href="{% url 'apl_euphoria:compra_crear' %}" class="btn btn-success btn-sm">
-                  <i class="fas fa-plus"></i> Agregar compra
-                </a>
-              </div>
-            </div>
-
-            <div class="card-body">
-              <table id="tabla-compras" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Proveedor</th>
-                    <th>Cantidad</th>
-                    <th>producto</th>
-                    <th>Precio unitario</th>
-                    <th>Fecha compra</th>
-                    <th>Administrador</th>
-                    <th>Opciones</th>
-                    
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for compra in object_list %}
-                  <tr>
-                    <td>{{ compra.id_compra }}</td>
-                    <td>{{ compra.id_proveedor.nombre }}</td>
-                    <td>{{ compra.cantidad }}</td>
-                    <td>{{ compra.id_producto.nombre }}</td>
-                    <td>{{ compra.precio_unitario }}</td>
-                    <td>{{ compra.id_administrador.nombre }}</td>
-                    <td>
-                      <a href="{% url 'apl_euphoria:compra_editar' compra.id_compra %}" class="btn btn-editar btn-xs" data-url="{% url 'apl_euphoria:compra_editar' compra.id_compra %}">
-                        <i class='fas fa-edit'></i>
-                      </a>
-                      <a href="{% url 'apl_euphoria:compra_eliminar' compra.id_compra %}" class="btn btn-danger btn-xs btn-eliminar" data-url="{% url 'apl_euphoria:compra_eliminar' compra.id_compra %}">
-                        <i class='far fa-trash-alt'></i>
-                      </a>
-                    </td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- Estilos DataTables -->
-<link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}" />
-<link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}" />
-
-<!-- Scripts DataTables -->
-<script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
-<script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
-<script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
-
-<!-- Script SweetAlert + DataTables Init -->
-<script>
-  $(document).ready(function () {
-    $('#tabla-compras').DataTable({
-      responsive: true,
-      autoWidth: false,
-      dom: '<"top"lf>rt<"bottom"ip><"clear">',
-      lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]],
-      language: {
-        sProcessing:     "Procesando...",
-        sLengthMenu:     "Mostrar MENU registros",
-        sZeroRecords:    "No se encontraron resultados",
-        sEmptyTable:     "Ningún dato disponible en esta tabla",
-        sInfo:           "Mostrando START a END de TOTAL registros",
-        sInfoEmpty:      "Mostrando 0 a 0 de 0 registros",
-        sInfoFiltered:   "(filtrado de MAX registros totales)",
-        sSearch:         "Buscar:",
-        oPaginate: {
-          sFirst:    "Primero",
-          sLast:     "Último",
-          sNext:     "Siguiente",
-          sPrevious: "Anterior"
-        },
-      }
-    });
-
-    // Botón editar
-    $(document).on('click', '.btn-editar', function(e) {
-      e.preventDefault();
-      var url = $(this).data('url');
-      Swal.fire({
-        title: 'Editar compra',
-        text: '¿Deseas editar este compra?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, editar',
-        cancelButtonText: 'Cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.href = url;
-        }
-      });
-    });
-
-    // Botón eliminar
-    $(document).on('click', '.btn-eliminar', function(e) {
-      e.preventDefault();
-      var url = $(this).data('url');
-      Swal.fire({
-        title: 'Eliminar PQR',
-        text: '¿Deseas eliminar este PQR?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Sí, eliminar',
-        cancelButtonText: 'Cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.href = url;
-        }
-      });
-    });
-  });
-</script>
-
-<!-- SweetAlert2 -->
+{% block extra_scripts %}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- Estilo personalizado (opcional) -->
-<link rel="stylesheet" href="{% static 'css/tabla.css' %}">
-
+<script>
+$(document).ready(function() {
+    $('#tabla-generica').DataTable({
+        responsive: true,
+        autoWidth: false,
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+        },
+    });
+});
+</script>
 {% endblock %}

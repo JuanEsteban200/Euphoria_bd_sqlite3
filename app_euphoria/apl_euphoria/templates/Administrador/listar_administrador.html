@@ -40,7 +40,7 @@
             <div class="card-header">
               <h3 class="card-title">Tabla de Administradores</h3>
               <div class="card-tools">
-                <a href="{% url 'apl_euphoria:cliente_crear' %}" class="btn btn-success btn-sm">
+                <a href="{% url 'apl_euphoria:administrador_crear' %}" class="btn btn-success btn-sm">
                   <i class="fas fa-plus"></i> Agregar ADMIN
                 </a>
               </div>
@@ -65,7 +65,12 @@
                     <td>{{ Administrador.correo }}</td>
                     <td>{{ Administrador.telefono }}</td>
                     <td>
-                    
+                      <a href="{% url 'apl_euphoria:administrador_editar' Administrador.id_administrador %}"
+                        <i class='fas fa-edit'></i>
+                      </a>
+                      <a href="{% url 'apl_euphoria:administrador_eliminar' Administrador.id_administrador %}" class="btn btn-danger btn-xs btn-eliminar">
+                        <i class='far fa-trash-alt'></i>
+                      </a> 
                     </td>
                   </tr>
                   {% endfor %}
