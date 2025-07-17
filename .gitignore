@@ -23,4 +23,4 @@ staticfiles/
 
 # IDEs
 .vscode/
-.idea/
+.idea/db.sqlite3
