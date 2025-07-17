@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
+from django.contrib import messages
 
 # Vista para listar productos
 class PedidoListView(ListView):

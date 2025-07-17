@@ -1,6 +1,21 @@
 {% extends 'body.html' %}
 {% block content %}
 {% load static %}
+{% if messages %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        {% for message in messages %}
+        Swal.fire({
+            icon: '{% if message.tags == "success" %}success{% elif message.tags == "error" %}error{% elif message.tags == "warning" %}warning{% else %}info{% endif %}',
+            title: '{{ message|escapejs }}',
+            showConfirmButton: false,
+            timer: 2500
+        });
+        {% endfor %}
+    });
+</script>
+{% endif %}
+
 
 <style>
 .btn-success.btn-sm {     
