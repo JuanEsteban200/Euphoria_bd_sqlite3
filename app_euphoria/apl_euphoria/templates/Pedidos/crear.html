@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="form-container">
-  <h2><i class="fas fa-plus"></i> Crear nuevo Pedido</h2>
+  <h2><i class="fas fa-plus"></i> Crear nuevo producto</h2>
   {% if messages %}
     {% for message in messages %}
       <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
@@ -12,8 +12,7 @@
       </div>
     {% endfor %}
   {% endif %}
-  {% if form %}
-  <form method="post" id="PedidoForm">
+  <form method="post" id="ProductoForm">
     {% csrf_token %}
     {{ form.non_field_errors }}
     {% for field in form %}
@@ -27,12 +26,9 @@
     {% endfor %}
     <div class="botones-container">
       <button type="submit" class="btn btn-primary btn-agregar"><i class="fas fa-save"></i> Guardar </button>
-      <a href="{% url 'apl_euphoria:pedido_lista' %}" class="btn btn-secondary"><i class="fas fa-times"></i> Cancelar</a>
+      <a href="{% url 'apl_euphoria:producto_lista' %}" class="btn btn-secondary"><i class="fas fa-times"></i> Cancelar</a>
     </div>
   </form>
-  {% else %}
-    <div class="alert alert-danger">No se ha proporcionado el formulario.</div>
-  {% endif %}
 </div>
 
 
