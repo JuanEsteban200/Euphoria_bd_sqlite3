@@ -169,4 +169,20 @@
 <!-- Estilo personalizado (opcional) -->
 <link rel="stylesheet" href="{% static 'css/tabla.css' %}">
 
+<!--script SweetAlert2-->
+{% block extra_scripts %}
+<script>
+  {% if messages %}
+    {% for message in messages %}
+      Swal.fire({
+        icon: 'success',
+        title: '{{ message|escapejs }}',
+        showConfirmButton: false,
+        timer: 2000
+      });
+    {% endfor %}
+  {% endif %}
+</script>
+{% endblock %}
+
 {% endblock %}

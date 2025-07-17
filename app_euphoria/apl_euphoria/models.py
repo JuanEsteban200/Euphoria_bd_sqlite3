@@ -49,7 +49,7 @@ class Producto(models.Model):
     marca = models.ForeignKey('MarcaCosmetico', on_delete=models.CASCADE)
     
     def __str__(self):
-        return f"{self.nombre} - {self.precio} - {self.stock} - {self.categoria} - {self.marca}"
+        return self.nombre
 
 class Pedido(models.Model): 
     id_pedido = models.AutoField(primary_key=True)
@@ -102,7 +102,7 @@ class Promocion(models.Model):
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     descuento = models.DecimalField(max_digits=10, decimal_places=2)
-    id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     requisitos = models.TextField()
     rendimiento = models.TextField()
 

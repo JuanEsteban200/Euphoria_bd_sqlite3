@@ -8,7 +8,7 @@ from apl_euphoria.Views.productos.views import ProductoListView, ProductoCreateV
 # from apl_euphoria.Views.proveedores.views import ProveedorListView, ProveedorCreateView, ProveedorUpdateView, ProveedorDeleteView
 from apl_euphoria.Views.compras.views import CompraListView, CompraCreateView, CompraUpdateView, CompraDeleteView
 # from apl_euphoria.Views.facturas.views import FacturaListView, FacturaCreateView, FacturaUpdateView, FacturaDeleteView
-# from apl_euphoria.Views.promociones.views import PromocionListView, PromocionCreateView, PromocionUpdateView, PromocionDeleteView
+from apl_euphoria.Views.promociones.views import PromocionListView, PromocionCreateView, PromocionUpdateView, PromocionDeleteView
 from apl_euphoria.Views.categoria_producto.views import CategoriaProductoListView, CategoriaProductoCreateView, CategoriaProductoUpdateView, CategoriaProductoDeleteView
 from apl_euphoria.Views.marca_producto.views import MarcaCosmeticoListView, MarcaCosmeticoCreateView, MarcaCosmeticoUpdateView, MarcaCosmeticoDeleteView
 from apl_euphoria.Views.pqr.views import PqrListView, PqrCreateView, PqrUpdateView, PqrDeleteView
@@ -86,11 +86,11 @@ urlpatterns = [
     # path('facturas/<int:pk>/editar/', FacturaUpdateView.as_view(), name='factura_editar'),  
     # path('facturas/<int:pk>/eliminar/', FacturaDeleteView.as_view(), name='factura_eliminar'),  
 
-    # # Promocion URLs
-    # path('promociones/', PromocionListView.as_view(), name='promocion_lista'),  
-    # path('promociones/crear/', PromocionCreateView.as_view(), name='promocion_crear'),  
-    # path('promociones/<int:pk>/editar/', PromocionUpdateView.as_view(), name='promocion_editar'), 
-    # path('promociones/<int:pk>/eliminar/', PromocionDeleteView.as_view(), name='promocion_eliminar'),  
+    #  Promocion URLs
+    path('promociones/', PromocionListView.as_view(), name='promocion_lista'),  
+    path('promociones/crear/', PromocionCreateView.as_view(), name='promocion_crear'),  
+    path('promociones/<int:pk>/editar/', PromocionUpdateView.as_view(), name='promocion_editar'), 
+    path('promociones/<int:pk>/eliminar/', PromocionDeleteView.as_view(), name='promocion_eliminar'),  
 
     # Categoria Producto URLs
     path('categorias/', CategoriaProductoListView.as_view(), name='categoria_lista'),  

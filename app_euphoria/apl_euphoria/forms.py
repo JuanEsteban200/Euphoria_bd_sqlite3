@@ -1,5 +1,5 @@
 from django import forms
-from apl_euphoria.models import Cliente,CategoriaProducto, MarcaCosmetico, Producto
+from apl_euphoria.models import Cliente,CategoriaProducto, MarcaCosmetico, Producto, Promocion
 
 class ClienteForm(forms.Form):
     nombre = forms.CharField(label='Nombre', max_length=100, required=True)
@@ -74,6 +74,28 @@ class ProductoForm(forms.ModelForm):
             'marca': forms.Select(attrs={'class': 'form-control'}),
         }
     
+    def clean_nombre(self):
+        nombre = self.cleaned_data.get('nombre')
+        if not nombre:
+            raise forms.ValidationError("El campo Nombre es obligatorio.")
+        return nombre
+    
+# Formulario para crear o editar una promoción
+class PromocionForm(forms.ModelForm):
+    class Meta:
+        model = Promocion
+        fields = ['nombre', 'descripcion', 'fecha_inicio', 'fecha_fin', 'descuento', 'producto', 'requisitos', 'rendimiento']
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'fecha_inicio': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'fecha_fin': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'descuento': forms.NumberInput(attrs={'class': 'form-control'}),
+            'producto': forms.Select(attrs={'class': 'form-control'}),
+            'requisitos': forms.TextInput(attrs={'class': 'form-control'}),
+            'rendimiento': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+        
     def clean_nombre(self):
         nombre = self.cleaned_data.get('nombre')
         if not nombre:
