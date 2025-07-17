@@ -46,7 +46,10 @@ class CategoriaProductoCreateView(CreateView):
        context['titulo'] = 'Crear Categoria'
        
        return context
+<<<<<<< HEAD
     
+=======
+>>>>>>> bafcb17cf7b4e7b1b645f2b8e34bd24f4723947b
 class CategoriaProductoUpdateView(UpdateView):
     model = CategoriaProducto
     template_name = "Categoria_productos/editar.html"
@@ -64,7 +67,10 @@ class CategoriaProductoUpdateView(UpdateView):
        context['titulo'] = 'Editar Categoria'
        
        return context
+<<<<<<< HEAD
     
+=======
+>>>>>>> bafcb17cf7b4e7b1b645f2b8e34bd24f4723947b
 class CategoriaProductoDeleteView(DeleteView):
     model = CategoriaProducto
     template_name = "Categoria_productos/eliminar.html"
@@ -81,4 +87,7 @@ class CategoriaProductoDeleteView(DeleteView):
        context['titulo'] = 'Eliminar Categoria'
        
        return context
+<<<<<<< HEAD
     
+=======
+>>>>>>> bafcb17cf7b4e7b1b645f2b8e34bd24f4723947b

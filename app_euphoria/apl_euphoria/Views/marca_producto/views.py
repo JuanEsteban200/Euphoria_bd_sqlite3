@@ -79,4 +79,7 @@ class MarcaCosmeticoDeleteView(DeleteView):
        context['titulo'] = 'Eliminar Marca'
        
        return context
+<<<<<<< HEAD
     
+=======
+>>>>>>> bafcb17cf7b4e7b1b645f2b8e34bd24f4723947b
