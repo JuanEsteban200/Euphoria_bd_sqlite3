@@ -12,7 +12,6 @@
       </div>
     {% endfor %}
   {% endif %}
-  <!-- Formulario productos -->
   <form method="post" id="ProductoForm">
     {% csrf_token %}
     {{ form.non_field_errors }}
@@ -25,14 +24,13 @@
         {% endif %}
       </div>
     {% endfor %}
-    <!-- botones crear-->
     <div class="botones-container">
       <button type="submit" class="btn btn-primary btn-agregar"><i class="fas fa-save"></i> Guardar </button>
       <a href="{% url 'apl_euphoria:producto_lista' %}" class="btn btn-secondary"><i class="fas fa-times"></i> Cancelar</a>
     </div>
   </form>
-  
 </div>
+
 
 {% endblock %}
 

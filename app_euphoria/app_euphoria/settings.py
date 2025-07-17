@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apl_euphoria',  # Your app name
     'widget_tweaks',
-    'dal',
-    'dal_select2',
 ]
 
 MIDDLEWARE = [
