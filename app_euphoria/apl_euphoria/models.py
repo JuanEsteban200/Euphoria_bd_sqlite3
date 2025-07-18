@@ -54,7 +54,7 @@ class Producto(models.Model):
 class Pedido(models.Model): 
     id_pedido = models.AutoField(primary_key=True)
     id_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    fecha = models.DateTimeField()
+    fecha = models.DateField()
 
 class DetallePedido(models.Model):
     id_detalle = models.AutoField(primary_key=True)

@@ -1,5 +1,5 @@
 from django import forms
-from apl_euphoria.models import Cliente,CategoriaProducto, MarcaCosmetico, Producto
+from apl_euphoria.models import Cliente,CategoriaProducto, MarcaCosmetico, Producto, Pedido
 
 class ClienteForm(forms.Form):
     nombre = forms.CharField(label='Nombre', max_length=100, required=True)
@@ -79,5 +79,22 @@ class ProductoForm(forms.ModelForm):
         if not nombre:
             raise forms.ValidationError("El campo Nombre es obligatorio.")
         return nombre
+class PedidoForm(forms.Form):
+    id_cliente = forms.ModelChoiceField(queryset=Cliente.objects.all(), label='Cliente', widget=forms.Select(attrs={'class': 'form-control'}))
+    fecha = forms.DateTimeField(label='Fecha', widget=forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}))
+
+    def clean_fecha(self):
+        fecha = self.cleaned_data.get('fecha')
+        if not fecha:
+            raise forms.ValidationError("El campo Fecha es obligatorio.")
+        return fecha
+
+    def save(self):
+        pedido = Pedido(
+            id_cliente=self.cleaned_data['id_cliente'],
+            fecha=self.cleaned_data['fecha']
+        )
+        pedido.save()
+        return pedido
 
     

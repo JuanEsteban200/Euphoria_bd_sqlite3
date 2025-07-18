@@ -14,6 +14,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link d-flex align-items-center {% if 'pedido_lista' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'apl_euphoria:pedido_lista' %}">
+                <i class="fas fa-box fa-fw me-3"></i>
+                <span class="sidebar-text">Pedidos</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link d-flex align-items-center" href="{% url 'apl_euphoria:cliente_lista' %}">
                 <i class="fas fa-users fa-fw me-3"></i>
                 <span class="sidebar-text">Clientes</span>
