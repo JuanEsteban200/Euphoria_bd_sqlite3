@@ -103,8 +103,8 @@ class Promocion(models.Model):
     fecha_fin = models.DateField()
     descuento = models.DecimalField(max_digits=10, decimal_places=2)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    requisitos = models.TextField()
-    rendimiento = models.TextField()
+    requisitos = models.CharField(max_length=100)
+    rendimiento = models.CharField(max_length=100)
 
 class CategoriaProducto(models.Model):
     id_categoria = models.AutoField(primary_key=True)

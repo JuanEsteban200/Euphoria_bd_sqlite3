@@ -1,140 +1,104 @@
 {% extends 'body.html' %}
-{% block content %}
 {% load static %}
 
-<style>
-.btn-success.btn-sm {     
-  background-color: #d170f1 !important; /* verde purpura */
-  border: NONE;
-  color: #fff !important;
-}       
-.btn-success.btn-sm:hover, .btn-success.btn-sm:focus {
-  background-color: #C79CFF !important;
-  border-color: #1e7e34 !important;
-  color: #fff !important;
-}
-.btn-editar {
-  background-color: #6fa7ca !important; /* azul Bootstrap */
-  border: NONE;
-  color: #fff !important;
-}
-</style>
+{% block title %}Lista de Promociones - Euphoria{% endblock %}
 
-<!-- Contenido -->
-<div class="content-wrapper">
-  <section class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-md-12">
-          <h1>Lista de Promociones</h1>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Tabla de Promociones</h3>
-              <div class="card-tools">
-                <a href="{% url 'apl_euphoria:promocion_crear' %}" class="btn btn-success btn-sm">
-                  <i class="fas fa-plus"></i> Agregar promocion
-                </a>
-              </div>
-            </div>
-
-            <div class="card-body">
-              <table id="tabla-productos" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%">
-                <thead>
-                  <tr>
-                    <th>Id promocion</th>
-                    <th>Descripcion</th>
-                    <th>fecha_inicio</th>
-                    <th>Fecha_fin</th>
-                    <th>Descuento</th>
-                    <th>Producto</th>
-                    <th>Requisitos</th>
-                    <th>Rendimiento</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for promocion in object_list %}
-                  <tr>
-                    <td>{{ promocion.id_promocion  }}</td>
-                    <td>{{ promocion.descripcion }}</td>
-                    <td>{{ promocion.fecha_inicio }}</td>
-                    <td>{{ promocion.fecha_fin }}</td>
-                    <td>{{ promocion.descuento }}</td>
-                    <td>{{ promocion.producto }}</td>
-                    <td>{{ promocion.requisitos }}</td>
-                    <td>{{ promocion.rendimiento }}</td>
-                    <td>
-                     <a href="{% url 'apl_euphoria:promocion_editar' promocion.id_promocion %}" class="btn btn-info btn-xs btn-editar" data-url="{% url 'apl_euphoria:promocion_editar' promocion.id_promocion %}">
-                        <i class='fas fa-edit'></i>
-                      </a>
-                      <a href="{% url 'apl_euphoria:promocion_eliminar' promocion.id_promocion %}" class="btn btn-danger btn-xs btn-eliminar" data-url="{% url 'apl_euphoria:promocion_eliminar' promocion.id_promocion %}">
-                        <i class='far fa-trash-alt'></i>
-                      </a>
-                    </td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+{% block content %}
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h3 class="card-title mb-0">Tabla de Promociones</h3>
+    <a href="{% url 'apl_euphoria:promocion_crear' %}" class="btn btn-primary btn-sm">
+      <i class="fas fa-plus me-1"></i> Agregar promocion
+    </a>
+  </div>
+  <div class="card-body">
+    <table id="tabla-generica" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%">
+      <thead>
+      <tr>
+        <th>Id promocion</th>
+        <th>Descripcion</th>
+        <th>fecha_inicio</th>
+        <th>Fecha_fin</th>
+        <th>Descuento</th>
+        <th>Producto</th>
+        <th>Requisitos</th>
+        <th>Rendimiento</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for promocion in promociones %}
+        <tr>
+          <td>{{ promocion.id_promocion }}</td>
+          <td>{{ promocion.descripcion }}</td>
+          <td>{{ promocion.fecha_inicio }}</td>
+          <td>{{ promocion.fecha_fin }}</td>
+          <td>{{ promocion.descuento }}</td>
+          <td>{{ promocion.producto }}</td>
+          <td>{{ promocion.requisitos }}</td>
+          <td>{{ promocion.rendimiento }}</td>
+          <td>
+            <a href="{% url 'apl_euphoria:promocion_editar' promocion.id_promocion %}" class="btn btn-info btn-xs btn-editar"
+              data-url="{% url 'apl_euphoria:promocion_editar' promocion.id_promocion %}">
+              <i class='fas fa-edit'></i>
+            </a>
+            <a href="{% url 'apl_euphoria:promocion_eliminar' promocion.id_promocion %}" class="btn btn-danger btn-xs btn-eliminar"
+              data-url="{% url 'apl_euphoria:promocion_eliminar' promocion.id_promocion %}">
+              <i class='far fa-trash-alt'></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
+{% endblock %}
 
-<!-- Estilos DataTables -->
+{% block extra_scripts %}
+<!-- DataTables -->
 <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}" />
 <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}" />
-
-<!-- Scripts DataTables -->
 <script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+
 <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
 <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
 
-<!-- Script SweetAlert + DataTables Init -->
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
   $(document).ready(function () {
-    $('#tabla-productos').DataTable({
+    $('#tabla-promocion').DataTable({
       responsive: true,
       autoWidth: false,
       dom: '<"top"lf>rt<"bottom"ip><"clear">',
       lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]],
       language: {
-        sProcessing:     "Procesando...",
-        sLengthMenu:     "Mostrar MENU registros",
-        sZeroRecords:    "No se encontraron resultados",
-        sEmptyTable:     "Ningún dato disponible en esta tabla",
-        sInfo:           "Mostrando START a END de TOTAL registros",
-        sInfoEmpty:      "Mostrando 0 a 0 de 0 registros",
-        sInfoFiltered:   "(filtrado de MAX registros totales)",
-        sSearch:         "Buscar:",
+        sProcessing: "Procesando...",
+        sLengthMenu: "Mostrar MENU registros",
+        sZeroRecords: "No se encontraron resultados",
+        sEmptyTable: "Ningún dato disponible en esta tabla",
+        sInfo: "Mostrando START a END de TOTAL registros",
+        sInfoEmpty: "Mostrando 0 a 0 de 0 registros",
+        sInfoFiltered: "(filtrado de MAX registros totales)",
+        sSearch: "Buscar:",
         oPaginate: {
-          sFirst:    "Primero",
-          sLast:     "Último",
-          sNext:     "Siguiente",
+          sFirst: "Primero",
+          sLast: "Último",
+          sNext: "Siguiente",
           sPrevious: "Anterior"
         },
       }
     });
 
-    // Botón editar
+    // Confirmaciones con SweetAlert2 para editar
     $(document).on('click', '.btn-editar', function(e) {
       e.preventDefault();
       var url = $(this).data('url');
       Swal.fire({
-        title: 'Editar Producto',
-        text: '¿Deseas editar este producto?',
+        title: 'Editar Promocion',
+        text: '¿Deseas editar esta promocion?',
         icon: 'question',
         showCancelButton: true,
         confirmButtonText: 'Sí, editar',
@@ -146,13 +110,13 @@
       });
     });
 
-    // Botón eliminar
+    // Confirmaciones con SweetAlert2 para eliminar
     $(document).on('click', '.btn-eliminar', function(e) {
       e.preventDefault();
       var url = $(this).data('url');
       Swal.fire({
-        title: 'Eliminar Producto',
-        text: '¿Deseas eliminar este producto?',
+        title: 'Eliminar Promocion',
+        text: '¿Está seguro de que deseas eliminar esta promocion?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
@@ -165,30 +129,32 @@
         }
       });
     });
+
+    // Mostrar mensajes
+    {% if messages %}
+      {% for message in messages %}
+        Swal.fire({
+          icon: 'success',
+          title: '{{ message|escapejs }}',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      {% endfor %}
+    {% endif %}
   });
 </script>
 
-
-<!-- SweetAlert2 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<!-- Estilo personalizado (opcional) -->
 <link rel="stylesheet" href="{% static 'css/tabla.css' %}">
 
-<!--script SweetAlert2-->
-{% block extra_scripts %}
 <script>
-  {% if messages %}
-    {% for message in messages %}
-      Swal.fire({
-        icon: 'success',
-        title: '{{ message|escapejs }}',
-        showConfirmButton: false,
-        timer: 2000
-      });
-    {% endfor %}
-  {% endif %}
+$(document).ready(function() {
+    $('#tabla-generica').DataTable({
+        responsive: true,
+        autoWidth: false,
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+        },
+    });
+});
 </script>
-{% endblock %}
-
 {% endblock %}

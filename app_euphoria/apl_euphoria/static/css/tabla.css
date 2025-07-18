@@ -1,3 +1,13 @@
+/* Para el footer fijo (conservado) */
+.content-wrapper {
+  min-height: calc(100vh - 56px) !important;
+  color: #2a82bd;
+}
+
+
+.card-title {
+  color: #2a82bd;
+}
 /* Contenedor superior de la tabla (mostrar registros + buscador) */
 .dataTables_wrapper .dataTables_length,
 .dataTables_wrapper .dataTables_filter {
@@ -8,25 +18,38 @@
 /* Mover el buscador a la derecha */
 .dataTables_wrapper .dataTables_filter {
   float: right !important;
+  margin-left: 0;
 }
 
 /* Ajustar el input de búsqueda */
 .dataTables_wrapper .dataTables_filter input {
   margin-left: 0.5em;
   border-radius: 4px;
-  border: 1px solid #ccc;
-  padding: 5px 8px;
+  border: 1px solid #ddd;
+  padding: 3px 5px;
+  width: 200px; /* Ancho fijo para el buscador */
 }
 
-.dataTables_wrapper .dataTables_filter input:focus {
-    border-color: var(--color-principal);
-    box-shadow: 0 0 0 2px rgba(54, 79, 107, 0.2);
-    outline: none;
+/* Ajustar el selector de "Mostrar registros" */
+.dataTables_wrapper .dataTables_length {
+  padding-top: 0.255em;
 }
 
-/* Estilos de la tabla */
-#tabla-clientes {
-  width: 100% !important;
+
+
+/* Tus estilos originales conservados */
+.dataTables_filter input {
+  margin-left: 0.5em;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  padding: 3px 5px;
+}
+
+.btn-xs {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
 }
 
 #tabla-clientes td:last-child,
@@ -35,34 +58,53 @@
   vertical-align: middle !important;
 }
 
-/* ===== Paginación de la Tabla con Colores Unificados ===== */
-.dataTables_wrapper .dataTables_paginate {
-  text-align: center !important;
-  margin-top: 18px;
+#tabla-clientes {
+  width: 100% !important;
+}
+
+.btn-editar {
+  background-color: #6fa7ca !important; /* azul Bootstrap */
+  border: NONE;
+  color: #fff !important;
+}
+
+.btn btn-primary btn-sm{
+   color : #d170f1 ;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-  border: 1.5px solid var(--color-principal);
-  background: var(--color-blanco);
-  color: var(--color-principal) !important;
+  border: 1.5px solid #a22abd;
+  background: #fff;
+  color: #bd2ab3 !important;
   border-radius: 6px;
-  padding: 6px 14px;
+  padding: 4px 12px;
   margin: 0 2px;
   font-weight: 600;
-  transition: all 0.2s ease;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
   cursor: pointer;
+  text-decoration: none !important; /* ✅ Esto elimina la línea inferior */
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  background: var(--color-principal) !important;
-  color: var(--color-blanco) !important;
-  border-color: var(--color-principal) !important;
-}
-
+/* Corrige e indenta el estilo del botón de paginación activo */
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-  background: var(--color-principal) !important;
-  color: var(--color-blanco) !important;
-  border-color: var(--color-principal);
+  border: 1.5px solid   #b12abd;
+  background: #2a82bd !important;
+  color: #fff !important;
+  border-radius: 6px;
+  padding: 4px 12px;
+  margin: 0 2px;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  cursor: pointer;
+  
+}
+
+/* Botón de paginación activo y hover en rosa */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #e75480 !important; /* rosa fuerte */
+  color: #fff !important;
+  border: 1.5px solid #b12abd;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
@@ -72,10 +114,7 @@
   cursor: default;
 }
 
-/* Botones de acciones en la tabla */
-.btn-xs {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.75rem;
-  line-height: 1.5;
-  border-radius: 0.2rem;
+.dataTables_wrapper .dataTables_paginate {
+  text-align: center !important;
+  margin-top: 18px;
 }

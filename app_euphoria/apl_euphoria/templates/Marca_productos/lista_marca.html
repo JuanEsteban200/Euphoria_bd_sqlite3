@@ -6,15 +6,15 @@
 {% block content %}
 <div class="card">
   <div class="card-header d-flex justify-content-between align-items-center">
-    <h3 class="card-title mb-0">Tabla de Marcas</h3>
+    <h3 class="card-title mb-0">Tabla de marcas</h3>
     <a href="{% url 'apl_euphoria:marca_crear' %}" class="btn btn-primary btn-sm">
-      <i class="fas fa-plus me-1"></i> Agregar Marca
+      <i class="fas fa-plus me-1"></i> Agregar marca
     </a>
   </div>
   <div class="card-body">
     <table id="tabla-generica" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%">
       <thead>
-        <tr>
+      <tr>
           <th>Id</th>
           <th>Nombre</th>
           <th>Detalles</th>
@@ -33,12 +33,14 @@
           <td>{{ marca.cantidades }}</td>
           
           <td class="text-center">
-            <a href="{% url 'apl_euphoria:marca_editar' marca.id_marca %}" class="btn btn-info btn-sm" title="Editar">
+           <a href="{% url 'apl_euphoria:marca_editar' marca.id_marca %}" class="btn btn-info btn-xs btn-editar"
+              data-url="{% url 'apl_euphoria:marca_editar' marca.id_marca %}">
               <i class='fas fa-edit'></i>
             </a>
-            <a href="{% url 'apl_euphoria:marca_eliminar' marca.id_marca %}" class="btn btn-danger btn-sm" title="Eliminar">
+            <a href="{% url 'apl_euphoria:marca_eliminar' marca.id_marca %}" class="btn btn-danger btn-xs btn-eliminar"
+              data-url="{% url 'apl_euphoria:marca_eliminar' marca.id_marca %}">
               <i class='far fa-trash-alt'></i>
-            </a> 
+            </a>
           </td>
         </tr>
         {% endfor %}
@@ -49,7 +51,95 @@
 {% endblock %}
 
 {% block extra_scripts %}
+<!-- DataTables -->
+<link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}" />
+<link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}" />
+<script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+
+<script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  $(document).ready(function () {
+    $('#tabla-marcas').DataTable({
+      responsive: true,
+      autoWidth: false,
+      dom: '<"top"lf>rt<"bottom"ip><"clear">',
+      lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]],
+      language: {
+        sProcessing: "Procesando...",
+        sLengthMenu: "Mostrar MENU registros",
+        sZeroRecords: "No se encontraron resultados",
+        sEmptyTable: "Ningún dato disponible en esta tabla",
+        sInfo: "Mostrando START a END de TOTAL registros",
+        sInfoEmpty: "Mostrando 0 a 0 de 0 registros",
+        sInfoFiltered: "(filtrado de MAX registros totales)",
+        sSearch: "Buscar:",
+        oPaginate: {
+          sFirst: "Primero",
+          sLast: "Último",
+          sNext: "Siguiente",
+          sPrevious: "Anterior"
+        },
+      }
+    });
+
+    // Confirmaciones con SweetAlert2 para editar
+    $(document).on('click', '.btn-editar', function(e) {
+      e.preventDefault();
+      var url = $(this).data('url');
+      Swal.fire({
+        title: 'Editar Marca',
+        text: '¿Deseas editar esta marca?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, editar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = url;
+        }
+      });
+    });
+
+    // Confirmaciones con SweetAlert2 para eliminar
+    $(document).on('click', '.btn-eliminar', function(e) {
+      e.preventDefault();
+      var url = $(this).data('url');
+      Swal.fire({
+        title: 'Eliminar marca',
+        text: '¿Está seguro de que deseas eliminar esta marca?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = url;
+        }
+      });
+    });
+
+    // Mostrar mensajes
+    {% if messages %}
+      {% for message in messages %}
+        Swal.fire({
+          icon: 'success',
+          title: '{{ message|escapejs }}',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      {% endfor %}
+    {% endif %}
+  });
+</script>
+
+<link rel="stylesheet" href="{% static 'css/tabla.css' %}">
 
 <script>
 $(document).ready(function() {
