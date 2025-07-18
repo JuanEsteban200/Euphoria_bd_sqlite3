@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="form-container">
-  <h2><i class="fas fa-plus"></i> Crear nuevo Detalle</h2>
+  <h2><i class="fas fa-plus"></i> Crear nuevo detalle del pedido</h2>
   {% if messages %}
     {% for message in messages %}
       <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
@@ -12,7 +12,7 @@
       </div>
     {% endfor %}
   {% endif %}
-  <form method="post" id="DetallePedidoForm">
+  <form method="post" id="Detalle_PedidoForm">
     {% csrf_token %}
     {{ form.non_field_errors }}
     {% for field in form %}
@@ -26,11 +26,10 @@
     {% endfor %}
     <div class="botones-container">
       <button type="submit" class="btn btn-primary btn-agregar"><i class="fas fa-save"></i> Guardar </button>
-      <a href="{% url 'apl_euphoria:detalle_pedido_lista' %}" class="btn btln-secondary"><i class="fas fa-times"></i> Cancelar</a>
+      <a href="{% url 'apl_euphoria:detalle_pedido_lista' %}" class="btn btn-secondary"><i class="fas fa-times"></i> Cancelar</a>
     </div>
   </form>
 </div>
 
 
 {% endblock %}
-

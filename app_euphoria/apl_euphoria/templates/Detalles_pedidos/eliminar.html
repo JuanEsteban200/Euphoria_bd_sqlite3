@@ -2,16 +2,18 @@
 {% block content %}
 
 <div class="eliminar-container">
-  <h1 class="titulo">🗑Eliminar DetallePedido</h1>
+  <h1 class="titulo">🗑Eliminar detalle del pedido</h1>
 
   <div class="eliminar-box">
-    <h2 class="text-danger mb-4">¿Deseas eliminar este Detalle?</h2>
-    <p><strong>ID del pedido:</strong> {{ object.id_detalle }}</p>
-    <p><strong>cliente:</strong> {{ object.id_pedido }}</p>
-    <p><strong>Fecha:</strong> {{ object.id_producto }}</p>
+    <h2 class="text-danger mb-4">¿Deseas eliminar a este pedido?</h2>
+     <p><strong>ID del detalle:</strong> {{ object.id_detalle }}</p>
+    <p><strong>ID del pedido:</strong> {{ object.id_pedido }}</p>
+    <p><strong>ID del producto:</strong> {{ object.id_producto }}</p>
     <p><strong>Cantidad:</strong> {{ object.cantidad }}</p>
-    <p><strong>Precio Unitario:</strong> {{ object.precio_unitario }}</p>
+     <p><strong>Precio Unitario:</strong> {{ object.precio_unitario }}</p>
+
    
+
 
 
     <form method="post" class="eliminar-form">
@@ -20,9 +22,8 @@
         <i class='far fa-trash-alt'></i> Sí, eliminar
       </button>
       <a href="{% url 'apl_euphoria:detalle_pedido_lista' %}" class="btn btn-secondary">
-  <i class='fas fa-times'></i> Cancelar
-</a>
-
+        <i class='fas fa-times'></i> Cancelar
+      </a>
     </form>
   </div>
 </div>
