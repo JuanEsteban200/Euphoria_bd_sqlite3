@@ -1,5 +1,5 @@
 from django import forms
-from apl_euphoria.models import Cliente,CategoriaProducto, MarcaCosmetico, Producto, Pedido
+from apl_euphoria.models import Cliente, CategoriaProducto, MarcaCosmetico, Producto, Pedido, Venta, Vendedor, Administrador
 
 class ClienteForm(forms.Form):
     nombre = forms.CharField(label='Nombre', max_length=100, required=True)
@@ -96,5 +96,20 @@ class PedidoForm(forms.Form):
         )
         pedido.save()
         return pedido
+class VentaForm(forms.Form):
+    id_vendedor = forms.ModelChoiceField(queryset=Vendedor.objects.all(), label='Vendedor', widget=forms.Select(attrs={'class': 'form-control'}))
+    detalles = forms.CharField(label='Detalles', widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}))
+    total = forms.DecimalField(label='Total', max_digits=10, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    subtotal = forms.DecimalField(label='Subtotal', max_digits=10, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    fecha = forms.DateField(label='Fecha', widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}))
+    cantidad = forms.IntegerField(label='Cantidad', widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    id_administrador = forms.ModelChoiceField(queryset=Administrador.objects.all(), label='Administrador', widget=forms.Select(attrs={'class': 'form-control'}))
+    id_pedido = forms.ModelChoiceField(queryset=Pedido.objects.all(), label='Pedido', widget=forms.Select(attrs={'class': 'form-control'}))
+    id_producto = forms.ModelChoiceField(queryset=Producto.objects.all(), label='Producto', widget=forms.Select(attrs={'class': 'form-control'}))
 
+    def clean_fecha(self):
+        fecha = self.cleaned_data.get('fecha')
+        if not fecha:
+            raise forms.ValidationError("El campo Fecha es obligatorio.")
+        return fecha
     
