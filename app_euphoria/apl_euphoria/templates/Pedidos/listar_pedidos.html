@@ -1,53 +1,142 @@
 {% extends 'body.html' %}
 {% load static %}
 
-{% block title %}Lista de Pedidos - Euphoria{% endblock %}
+{% block title %}Lista de Pedido - Euphoria{% endblock %}
 
 {% block content %}
 <div class="card">
   <div class="card-header d-flex justify-content-between align-items-center">
-    <h3 class="card-title mb-0">Tabla de Pedidos</h3>
+    <h3 class="card-title mb-0">Tabla de Pagos</h3>
     <a href="{% url 'apl_euphoria:pedido_crear' %}" class="btn btn-primary btn-sm">
-      <i class="fas fa-plus me-1"></i> Agregar pedido
+      <i class="fas fa-plus me-1"></i> Agregar Pedido
     </a>
   </div>
   <div class="card-body">
     <table id="tabla-generica" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%">
       <thead>
-        <tr>
+      <tr>
           <th>Id Pedido</th>
           <th>Id cliente</th>
           <th>Fecha</th>
           <th>Acciones</th>
-          
-        </tr>
-      </thead>
-      <tbody>
-        {% for pedido in pedidos %}
-        <tr>
-          <td>{{ pedido.id_pedido }}</td>
-          <td>{{ pedido.id_cliente }}</td>
-          <td>{{ pedido.fecha|date:"Y-m-d" }}</td>
 
-          
-          <td class="text-center">
-            <a href="{% url 'apl_euphoria:pedido_editar' pedido.id_pedido %}" class="btn btn-info btn-sm" title="Editar">
-              <i class='fas fa-edit'></i>
-            </a>
-            <a href="{% url 'apl_euphoria:pedido_eliminar' pedido.id_pedido %}" class="btn btn-danger btn-sm" title="Eliminar">
-              <i class='far fa-trash-alt'></i>
-            </a> 
+                  </tr>
+                </thead>
+<tbody>
+  {% for pedido in object_list %}
+  <tr>
+    <td>{{ pedido.id_pedido }}</td>
+    <td>{{ pedido.id_cliente }}</td>
+    <td>{{ pedido.fecha|date:"Y-m-d" }}</td>
+    
+      
+     <td class="text-center">
+            <a href="{% url 'apl_euphoria:pedido_editar' pedido.id_pedido %}" class="btn btn-info btn-xs btn-editar" data-url="{% url 'apl_euphoria:pedido_editar' pedido.id_pedido %}">
+                        <i class='fas fa-edit'></i>
+                      </a>
+      <a href="{% url 'apl_euphoria:pedido_eliminar' pedido.id_pedido %}" class="btn btn-danger btn-xs btn-eliminar" data-url="{% url 'apl_euphoria:pedido_eliminar' pedido.id_pedido %}">
+        <i class='far fa-trash-alt'></i>
+      </a>
+
           </td>
         </tr>
-        {% endfor %}
-      </tbody>
+        {% endfor %}
+</tbody>
     </table>
   </div>
 </div>
 {% endblock %}
 
 {% block extra_scripts %}
+<!-- DataTables -->
+<link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}" />
+<link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}" />
+<script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+
+<script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  $(document).ready(function () {
+    $('#tabla-pago').DataTable({
+      responsive: true,
+      autoWidth: false,
+      dom: '<"top"lf>rt<"bottom"ip><"clear">',
+      lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]],
+      language: {
+        sProcessing: "Procesando...",
+        sLengthMenu: "Mostrar MENU registros",
+        sZeroRecords: "No se encontraron resultados",
+        sEmptyTable: "Ningún dato disponible en esta tabla",
+        sInfo: "Mostrando START a END de TOTAL registros",
+        sInfoEmpty: "Mostrando 0 a 0 de 0 registros",
+        sInfoFiltered: "(filtrado de MAX registros totales)",
+        sSearch: "Buscar:",
+        oPaginate: {
+          sFirst: "Primero",
+          sLast: "Último",
+          sNext: "Siguiente",
+          sPrevious: "Anterior"
+        },
+      }
+    });
+
+    // Confirmaciones con SweetAlert2 para editar
+    $(document).on('click', '.btn-editar', function(e) {
+      e.preventDefault();
+      var url = $(this).data('url');
+      Swal.fire({
+        title: 'Editar Pago',
+        text: '¿Deseas editar este pago?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, editar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = url;
+        }
+      });
+    });
+
+    // Confirmaciones con SweetAlert2 para eliminar
+    $(document).on('click', '.btn-eliminar', function(e) {
+      e.preventDefault();
+      var url = $(this).data('url');
+      Swal.fire({
+        title: 'Eliminar Pago',
+        text: '¿Está seguro de que deseas eliminar este pago?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = url;
+        }
+      });
+    });
+
+    // Mostrar mensajes
+    {% if messages %}
+      {% for message in messages %}
+        Swal.fire({
+          icon: 'success',
+          title: '{{ message|escapejs }}',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      {% endfor %}
+    {% endif %}
+  });
+</script>
+
+<link rel="stylesheet" href="{% static 'css/tabla.css' %}">
 
 <script>
 $(document).ready(function() {
